@@ -303,7 +303,7 @@ const Home = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Link to="/register" className="relative z-10">Registration Open</Link>
+            <Link to="/event-registration" className="relative z-10">Registration Open</Link>
             <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </motion.button>
         </div>

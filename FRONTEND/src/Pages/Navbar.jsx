@@ -194,7 +194,7 @@ const AnimatedLogo = () => {
             animate={{ scale: [1, 1.5, 1] }}
             transition={{ duration: 1, repeat: Infinity }}
           />
-          <span className="text-[10px] text-slate-400 uppercase tracking-widest">Festival</span>
+         
         </div>
       </div>
     </NavLink>
@@ -205,7 +205,7 @@ const RegisterButton = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <NavLink to="/register" className="hidden md:block">
+    <NavLink to="/event-registration" className="hidden md:block">
       <motion.button
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -408,7 +408,7 @@ export default function Navbar() {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                <NavLink to="/register" onClick={() => setOpen(false)}>
+                <NavLink to="/event-registration" onClick={() => setOpen(false)}>
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}

@@ -1,4 +1,4 @@
-import React, { useState,  useRef } from 'react';
+import React, { useState , useEffect} from 'react';
 import { Link } from 'react-router-dom';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
@@ -230,7 +230,6 @@ const winners = [
   { id: 13, imageSrc: w13, name: 'Winner 13' },
   { id: 14, imageSrc: w14, name: 'Winner 14' },
 ];
-
 const EventCard = ({ event, onClick, index }) => {
   const [loaded, setLoaded] = useState(false);
 
@@ -343,6 +342,35 @@ const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [filter, setFilter] = useState('All');
 
+  // Countdown Timer Logic
+  const [timeLeft, setTimeLeft] = useState({});
+
+  useEffect(() => {
+    const targetDate = new Date('2026-02-20T00:00:00+05:30').getTime(); // IST timezone
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        setTimeLeft({ expired: true });
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+    };
+
+    updateTimer();
+    const timerId = setInterval(updateTimer, 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
+
   const filteredEvents = filter === 'All' 
     ? events 
     : events.filter(e => e.category === filter);
@@ -362,7 +390,7 @@ const Events = () => {
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <Sparkles className="w-16 h-16 text-orange-500 mx-auto mb-6 animate-pulse" />
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight">
@@ -375,6 +403,49 @@ const Events = () => {
               Tech + Cultural Fest • February 2026
             </p>
           </motion.div>
+
+          {/* Countdown Timer */}
+          <div className="mb-16">
+            <div className="text-center mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold bg-linear-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">
+                {timeLeft.expired ? "CROSSROADS Has Begun!" : "Event Starts In"}
+              </h2>
+            </div>
+
+            {!timeLeft.expired ? (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-6 max-w-3xl mx-auto">
+                {[
+                  { value: timeLeft.days ?? 0, label: "Days" },
+                  { value: timeLeft.hours ?? 0, label: "Hours" },
+                  { value: timeLeft.minutes ?? 0, label: "Minutes" },
+                  { value: timeLeft.seconds ?? 0, label: "Seconds" },
+                ].map((item, i) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-zinc-900/70 backdrop-blur-md rounded-2xl p-5 md:p-7 border border-zinc-700/50 shadow-xl shadow-black/30"
+                  >
+                    <div className="text-4xl md:text-5xl font-black text-orange-400 tracking-tight text-center">
+                      {String(item.value).padStart(2, '0')}
+                    </div>
+                    <div className="text-sm md:text-base text-zinc-400 mt-2 font-medium uppercase tracking-wider text-center">
+                      {item.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : (
+              <motion.div
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                className="text-center text-3xl md:text-5xl font-bold text-orange-500 tracking-wide"
+              >
+                LET'S GOOO 🚀
+              </motion.div>
+            )}
+          </div>
 
           {/* Filter Buttons */}
           <div className="flex justify-center gap-4 md:gap-6 mb-16 flex-wrap">
@@ -433,7 +504,7 @@ const Events = () => {
         </div>
       </div>
 
-      {/* ===================== MODAL ===================== */}
+      {/* Modal */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
@@ -443,7 +514,6 @@ const Events = () => {
             className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-6"
             onClick={() => setSelectedEvent(null)}
           >
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -451,7 +521,6 @@ const Events = () => {
               className="absolute inset-0 bg-black/75 backdrop-blur-xl"
             />
 
-            {/* Modal Content */}
             <motion.div
               initial={{ scale: 0.8, opacity: 0, y: 60 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -542,7 +611,7 @@ const Events = () => {
                   Close
                 </motion.button>
 
-                <Link to="/registration" className="flex-1">
+                <Link to="/event-registration" className="flex-1">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.97 }}

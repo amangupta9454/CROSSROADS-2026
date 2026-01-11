@@ -1,8 +1,275 @@
+// import { useState } from 'react';
+// import Select from 'react-select';
+// import axios from 'axios';
+// import toast from 'react-hot-toast';
+// import { Loader2 } from 'lucide-react';
+
+// const events = [
+//   { value: 'code-puzzle', label: 'Code Puzzle', icon: '💻', category: 'technical' },
+//   { value: 'project-exhibition', label: 'Project Exhibition', icon: '🔬', category: 'technical' },
+//   { value: 'robo-race', label: 'Robo Race', icon: '🤖', category: 'technical' },
+//   { value: 'technical-poster', label: 'Technical Poster', icon: '📊', category: 'technical' },
+//   { value: 'cultural-events', label: 'Cultural Events', icon: '🎭', category: 'cultural' },
+//   { value: 'rangoli-competition', label: 'Rangoli Competition', icon: '🎨', category: 'cultural' },
+//   { value: 'food-without-fire', label: 'Food Without Fire', icon: '🍳', category: 'cultural' },
+//   { value: 'nukkad-natak', label: 'Nukkad Natak', icon: '🎪', category: 'cultural' },
+//   { value: 'singing', label: 'Singing', icon: '🎤', category: 'cultural' },
+//   { value: 'dance-competition', label: 'Dance Competition', icon: '💃', category: 'cultural' },
+//   { value: 'rock-band', label: 'Rock Band', icon: '🎸', category: 'cultural' },
+//   { value: 'short-film-maker', label: 'Short Film Maker', icon: '🎬', category: 'cultural' },
+//   { value: 'ad-mad-show', label: 'Ad Mad Show', icon: '📺', category: 'cultural' },
+//   { value: 'treasure-hunt', label: 'Treasure Hunt', icon: '🗺️', category: 'fun' },
+// ];
+
+// const colleges = [
+//   'ABESIT, Ghaziabad', 'IMS Engineering College, Ghaziabad', 'ABES Engineering College, Ghaziabad',
+//   'AKGEC, Ghaziabad', 'JSS Noida', 'RKGIT, Ghaziabad', 'GL Bajaj, Noida',
+//   'HI-TECH Institute of Engineering and Technology, Ghaziabad', 'NIET', 'GNIOT',
+//   'Galgotias University', 'Galgotias College', 'KIET', 'Bhagwati Institute of Technology',
+//   'H.R. Group of Institutions', 'INMANTEC Institutions', 'OTHER'
+// ].map(inst => ({ value: inst, label: inst }));
+
+// const schools = [
+//   'Delhi Public School (DPS), Ghaziabad', 'Kendriya Vidyalaya, Ghaziabad', 'OTHER'
+// ].map(inst => ({ value: inst, label: inst }));
+
+// const courses = ['btech', 'bpharma', 'bca', 'bba', 'bcom', 'bsc', 'polytechnic', 'mtech', 'mpharma', 'mca', 'mba', 'mcom', 'msc', 'bed'].map(c => ({ value: c, label: c.toUpperCase() }));
+
+// const branches = ['cse & allied branches', 'it', 'ece', 'me', 'ee', 'civil', 'cse'].map(b => ({ value: b, label: b.toUpperCase() }));
+
+// const years = [1,2,3,4].map(y => ({ value: y, label: y }));
+
+// const classes = [9,10,11,12].map(c => ({ value: c, label: c }));
+
+// const teamSizes = Array.from({ length: 10 }, (_, i) => i + 1).map(s => ({ value: s, label: `${s} (${s === 1 ? 'Solo' : 'Members'})` }));
+
+// const RegistrationForm = () => {
+//   const [formData, setFormData] = useState({
+//     teamName: '',
+//     leaderName: '',
+//     leaderMobile: '',
+//     leaderWhatsapp: '',
+//     leaderEmail: '',
+//     leaderRollNo: '',
+//     event: null,
+//     teamSize: 1,
+//     teamMembers: [],
+//     institution: null,
+//     studentType: 'college',
+//     course: null,
+//     branch: null,
+//     year: null,
+//     class: null,
+//     idProof: null,
+//   });
+//   const [errors, setErrors] = useState({});
+//   const [loading, setLoading] = useState(false);
+//   const [progress, setProgress] = useState(0);
+
+//   const validateField = (name, value) => {
+//     let error = '';
+//     if (name === 'leaderName' && value.length < 4) error = 'Name min 4 chars';
+//     if (name === 'leaderEmail' && !/\S+@\S+\.\S+/.test(value)) error = 'Invalid email';
+//     if (['leaderMobile', 'leaderWhatsapp'].includes(name) && (!/^[6-9]\d{9}$/.test(value))) error = 'Indian 10-digit number';
+//     return error;
+//   };
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData({ ...formData, [name]: value });
+//     const error = validateField(name, value);
+//     setErrors({ ...errors, [name]: error });
+//   };
+
+//   const handleSelect = (name, selected) => {
+//     setFormData({ ...formData, [name]: selected });
+//   };
+
+//   const handleTeamSize = (selected) => {
+//     const size = selected.value;
+//     const members = Array.from({ length: size - 1 }, () => ({ name: '', email: '' }));
+//     setFormData({ ...formData, teamSize: size, teamMembers: members });
+//   };
+
+//   const handleMemberChange = (index, field, value) => {
+//     const members = [...formData.teamMembers];
+//     members[index][field] = value;
+//     setFormData({ ...formData, teamMembers: members });
+//   };
+
+//   const handleFile = (e) => {
+//     const file = e.target.files[0];
+//     if (file && file.size > 3 * 1024 * 1024) {
+//       toast.error('File too large (<3MB)');
+//       return;
+//     }
+//     if (file && !file.type.startsWith('image/')) {
+//       toast.error('Image only');
+//       return;
+//     }
+//     setFormData({ ...formData, idProof: file });
+//   };
+
+//   const validateForm = () => {
+//     let valid = true;
+//     const newErrors = {};
+//     Object.keys(formData).forEach(key => {
+//       if (['leaderName', 'leaderEmail', 'leaderMobile', 'leaderWhatsapp'].includes(key)) {
+//         const err = validateField(key, formData[key]);
+//         if (err) {
+//           newErrors[key] = err;
+//           valid = false;
+//         }
+//       }
+//     });
+//     setErrors(newErrors);
+//     return valid;
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!validateForm()) {
+//       toast.error('Please fix errors');
+//       return;
+//     }
+//     setLoading(true);
+//     setProgress(0);
+//     const submitData = {
+//       ...formData,
+//       institution: formData.institution?.value,
+//       course: formData.course?.value,
+//       branch: formData.branch?.value,
+//       year: formData.year?.value,
+//       class: formData.class?.value,
+//       event: formData.event ? { value: formData.event.value, label: formData.event.label, category: formData.event.category } : null,
+//     };
+//     const data = new FormData();
+//     data.append('data', JSON.stringify(submitData));
+//     if (formData.idProof) data.append('idProof', formData.idProof);
+
+//     try {
+//       await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/registrations`, data, {
+//         headers: { 'Content-Type': 'multipart/form-data' },
+//         onUploadProgress: (prog) => setProgress(Math.round((prog.loaded * 100) / prog.total)),
+//       });
+//       toast.success('Registration successful!');
+//       toast.success('Check your email for confirmation.');
+//     } catch (err) {
+//       toast.error('Submission failed: ' + (err.response?.data?.message || err.message));
+//     } finally {
+//       setLoading(false);
+//       setProgress(0);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit} className="bg-linear-to-br from-blue-50 to-indigo-100 p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto my-10">
+//       <h1 className="text-3xl font-bold mb-6 text-center text-indigo-800">CROSSROADS 2026 Registration</h1>
+//       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+//         <div>
+//           <label className="block text-sm font-medium">Team Name</label>
+//           <input name="teamName" placeholder="Team Name" onChange={handleChange} required className="border p-2 w-full rounded" />
+//         </div>
+//         <div>
+//           <label className="block text-sm font-medium">Leader Name</label>
+//           <input name="leaderName" placeholder="Team Leader Name" onChange={handleChange} required className="border p-2 w-full rounded" />
+//           {errors.leaderName && <p className="text-red-500 text-xs">{errors.leaderName}</p>}
+//         </div>
+//         <div>
+//           <label className="block text-sm font-medium">Mobile</label>
+//           <input name="leaderMobile" placeholder="Mobile" onChange={handleChange} required className="border p-2 w-full rounded" />
+//           {errors.leaderMobile && <p className="text-red-500 text-xs">{errors.leaderMobile}</p>}
+//         </div>
+//         <div>
+//           <label className="block text-sm font-medium">WhatsApp</label>
+//           <input name="leaderWhatsapp" placeholder="WhatsApp" onChange={handleChange} required className="border p-2 w-full rounded" />
+//           {errors.leaderWhatsapp && <p className="text-red-500 text-xs">{errors.leaderWhatsapp}</p>}
+//         </div>
+//         <div>
+//           <label className="block text-sm font-medium">Email</label>
+//           <input name="leaderEmail" placeholder="Email" onChange={handleChange} required className="border p-2 w-full rounded" />
+//           {errors.leaderEmail && <p className="text-red-500 text-xs">{errors.leaderEmail}</p>}
+//         </div>
+//         <div>
+//           <label className="block text-sm font-medium">Roll No/ID</label>
+//           <input name="leaderRollNo" placeholder="Roll No/Student ID" onChange={handleChange} required className="border p-2 w-full rounded" />
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-sm font-medium">Event</label>
+//           <Select options={events} onChange={(sel) => handleSelect('event', sel)} placeholder="Choose Event" />
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-sm font-medium">Team Size</label>
+//           <Select options={teamSizes} value={teamSizes.find(s => s.value === formData.teamSize)} onChange={handleTeamSize} placeholder="Team Size" />
+//         </div>
+//         {formData.teamMembers.map((_, index) => (
+//           <div key={index} className="col-span-2 grid grid-cols-2 gap-4">
+//             <input placeholder={`Member ${index + 1} Name`} onChange={(e) => handleMemberChange(index, 'name', e.target.value)} required className="border p-2 rounded" />
+//             <input placeholder={`Member ${index + 1} Email`} onChange={(e) => handleMemberChange(index, 'email', e.target.value)} required className="border p-2 rounded" />
+//           </div>
+//         ))}
+//         <div className="col-span-2">
+//           <label className="block text-sm font-medium">Student Type</label>
+//           <div className="flex space-x-4">
+//             <label><input type="radio" name="studentType" value="college" checked={formData.studentType === 'college'} onChange={handleChange} /> College</label>
+//             <label><input type="radio" name="studentType" value="school" checked={formData.studentType === 'school'} onChange={handleChange} /> School</label>
+//           </div>
+//         </div>
+//         <div className="col-span-2">
+//           <label className="block text-sm font-medium">Institution</label>
+//           <Select options={formData.studentType === 'college' ? colleges : schools} onChange={(sel) => handleSelect('institution', sel)} placeholder="Select Institution" />
+//         </div>
+//         {formData.studentType === 'college' ? (
+//           <>
+//             <div><Select options={courses} onChange={(sel) => handleSelect('course', sel)} placeholder="Course" /></div>
+//             <div><Select options={branches} onChange={(sel) => handleSelect('branch', sel)} placeholder="Branch" /></div>
+//             <div><Select options={years} onChange={(sel) => handleSelect('year', sel)} placeholder="Year" /></div>
+//           </>
+//         ) : (
+//           <div className="col-span-2"><Select options={classes} onChange={(sel) => handleSelect('class', sel)} placeholder="Class" /></div>
+//         )}
+//         <div className="col-span-2">
+//   <label className="block text-sm font-medium">
+//     ID Proof (Image &lt;3MB)
+//   </label>
+//   <input 
+//     type="file" 
+//     onChange={handleFile} 
+//     accept="image/*" 
+//     required 
+//     className="mt-1 block w-full text-sm text-gray-500
+//       file:mr-4 file:py-2 file:px-4
+//       file:rounded-full file:border-0
+//       file:text-sm file:font-semibold
+//       file:bg-indigo-50 file:text-indigo-700
+//       hover:file:bg-indigo-100"
+//   />
+//   {progress > 0 && (
+//     <div className="bg-blue-200 h-2 rounded mt-2 overflow-hidden">
+//       <div 
+//         className="bg-blue-500 h-full rounded transition-all duration-300"
+//         style={{ width: `${progress}%` }}
+//       />
+//     </div>
+//   )}
+// </div>
+//       </div>
+//       <button type="submit" disabled={loading} className="mt-6 bg-indigo-600 text-white p-3 w-full rounded hover:bg-indigo-700 flex justify-center">
+//         {loading ? <Loader2 className="animate-spin" /> : 'Submit'}
+//       </button>
+//     </form>
+//   );
+// };
+
+// export default RegistrationForm;
+
+
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Select from 'react-select';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { Loader2 } from 'lucide-react';
+import { Loader2, User, Mail, Phone, Users, BookOpen, GraduationCap, FileUp, CheckCircle2, ArrowRight } from 'lucide-react';
 
 const events = [
   { value: 'code-puzzle', label: 'Code Puzzle', icon: '💻', category: 'technical' },
@@ -37,11 +304,59 @@ const courses = ['btech', 'bpharma', 'bca', 'bba', 'bcom', 'bsc', 'polytechnic',
 
 const branches = ['cse & allied branches', 'it', 'ece', 'me', 'ee', 'civil', 'cse'].map(b => ({ value: b, label: b.toUpperCase() }));
 
-const years = [1,2,3,4].map(y => ({ value: y, label: y }));
+const years = [1,2,3,4].map(y => ({ value: y, label: `Year ${y}` }));
 
-const classes = [9,10,11,12].map(c => ({ value: c, label: c }));
+const classes = [9,10,11,12].map(c => ({ value: c, label: `Class ${c}` }));
 
-const teamSizes = Array.from({ length: 10 }, (_, i) => i + 1).map(s => ({ value: s, label: `${s} (${s === 1 ? 'Solo' : 'Members'})` }));
+const teamSizes = Array.from({ length: 10 }, (_, i) => i + 1).map(s => ({ value: s, label: `${s} ${s === 1 ? 'Solo' : 'Members'}` }));
+
+const customSelectStyles = {
+  control: (base, state) => ({
+    ...base,
+    backgroundColor: 'rgba(15, 23, 42, 0.6)',
+    borderColor: state.isFocused ? 'rgba(249, 115, 22, 0.8)' : 'rgba(249, 115, 22, 0.2)',
+    borderWidth: '2px',
+    color: '#fff',
+    cursor: 'pointer',
+    minHeight: '50px',
+    boxShadow: state.isFocused ? '0 0 20px rgba(249, 115, 22, 0.3)' : 'none',
+    transition: 'all 0.3s ease',
+    backdropFilter: 'blur(10px)',
+    borderRadius: '12px',
+  }),
+  option: (base, state) => ({
+    ...base,
+    backgroundColor: state.isSelected ? 'rgb(249, 115, 22)' : state.isFocused ? 'rgba(249, 115, 22, 0.15)' : 'rgba(15, 23, 42, 0.8)',
+    color: state.isSelected ? '#fff' : '#e5e7eb',
+    cursor: 'pointer',
+    padding: '12px',
+    transition: 'all 0.2s ease',
+    borderRadius: '8px',
+  }),
+  menu: (base) => ({
+    ...base,
+    backgroundColor: 'rgba(15, 23, 42, 0.95)',
+    border: '2px solid rgba(249, 115, 22, 0.2)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: '12px',
+  }),
+  input: (base) => ({
+    ...base,
+    color: '#fff',
+  }),
+  singleValue: (base) => ({
+    ...base,
+    color: '#fff',
+  }),
+  placeholder: (base) => ({
+    ...base,
+    color: 'rgba(229, 231, 235, 0.4)',
+  }),
+  menuList: (base) => ({
+    ...base,
+    borderRadius: '12px',
+  }),
+};
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -68,9 +383,9 @@ const RegistrationForm = () => {
 
   const validateField = (name, value) => {
     let error = '';
-    if (name === 'leaderName' && value.length < 4) error = 'Name min 4 chars';
+    if (name === 'leaderName' && value.trim().length < 3) error = 'Name must be at least 3 characters';
     if (name === 'leaderEmail' && !/\S+@\S+\.\S+/.test(value)) error = 'Invalid email';
-    if (['leaderMobile', 'leaderWhatsapp'].includes(name) && (!/^[6-9]\d{9}$/.test(value))) error = 'Indian 10-digit number';
+    if (['leaderMobile', 'leaderWhatsapp'].includes(name) && (!/^[6-9]\d{9}$/.test(value))) error = 'Invalid Indian mobile number';
     return error;
   };
 
@@ -83,6 +398,9 @@ const RegistrationForm = () => {
 
   const handleSelect = (name, selected) => {
     setFormData({ ...formData, [name]: selected });
+    if (name === 'event' || name === 'institution') {
+      setErrors({ ...errors, [name]: '' });
+    }
   };
 
   const handleTeamSize = (selected) => {
@@ -100,19 +418,29 @@ const RegistrationForm = () => {
   const handleFile = (e) => {
     const file = e.target.files[0];
     if (file && file.size > 3 * 1024 * 1024) {
-      toast.error('File too large (<3MB)');
+      toast.error('File size must be less than 3MB');
       return;
     }
     if (file && !file.type.startsWith('image/')) {
-      toast.error('Image only');
+      toast.error('Please upload an image file');
       return;
     }
     setFormData({ ...formData, idProof: file });
+    if (file) {
+      toast.success('ID proof uploaded successfully');
+      setErrors({ ...errors, idProof: '' });
+    }
   };
 
   const validateForm = () => {
     let valid = true;
     const newErrors = {};
+    
+    if (formData.teamName.trim().length < 3) {
+      newErrors.teamName = 'Team name required';
+      valid = false;
+    }
+    
     Object.keys(formData).forEach(key => {
       if (['leaderName', 'leaderEmail', 'leaderMobile', 'leaderWhatsapp'].includes(key)) {
         const err = validateField(key, formData[key]);
@@ -122,6 +450,20 @@ const RegistrationForm = () => {
         }
       }
     });
+    
+    if (!formData.event) {
+      newErrors.event = 'Please select an event';
+      valid = false;
+    }
+    if (!formData.institution) {
+      newErrors.institution = 'Please select institution';
+      valid = false;
+    }
+    if (!formData.idProof) {
+      newErrors.idProof = 'Please upload ID proof';
+      valid = false;
+    }
+    
     setErrors(newErrors);
     return valid;
   };
@@ -129,11 +471,12 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      toast.error('Please fix errors');
+      toast.error('Please fill all required fields');
       return;
     }
     setLoading(true);
     setProgress(0);
+    
     const submitData = {
       ...formData,
       institution: formData.institution?.value,
@@ -143,6 +486,7 @@ const RegistrationForm = () => {
       class: formData.class?.value,
       event: formData.event ? { value: formData.event.value, label: formData.event.label, category: formData.event.category } : null,
     };
+    
     const data = new FormData();
     data.append('data', JSON.stringify(submitData));
     if (formData.idProof) data.append('idProof', formData.idProof);
@@ -152,112 +496,463 @@ const RegistrationForm = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
         onUploadProgress: (prog) => setProgress(Math.round((prog.loaded * 100) / prog.total)),
       });
-      toast.success('Registration successful!');
-      toast.success('Check your email for confirmation.');
+      toast.success('Registration successful!', { duration: 4000 });
+      toast.success('Check your email for confirmation', { duration: 4000 });
+      setFormData({
+        teamName: '',
+        leaderName: '',
+        leaderMobile: '',
+        leaderWhatsapp: '',
+        leaderEmail: '',
+        leaderRollNo: '',
+        event: null,
+        teamSize: 1,
+        teamMembers: [],
+        institution: null,
+        studentType: 'college',
+        course: null,
+        branch: null,
+        year: null,
+        class: null,
+        idProof: null,
+      });
     } catch (err) {
-      toast.error('Submission failed: ' + (err.response?.data?.message || err.message));
+      toast.error(err.response?.data?.message || 'Registration failed');
     } finally {
       setLoading(false);
       setProgress(0);
     }
   };
 
+  const inputClasses = "w-full bg-white/5 border-2 border-orange-500/20 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-orange-500/60 focus:ring-2 focus:ring-orange-500/20 transition-all duration-300 backdrop-blur-sm hover:border-orange-500/40";
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      }
+    }
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="bg-linear-to-br from-blue-50 to-indigo-100 p-8 rounded-xl shadow-2xl w-full max-w-4xl mx-auto my-10">
-      <h1 className="text-3xl font-bold mb-6 text-center text-indigo-800">CROSSROADS 2026 Registration</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium">Team Name</label>
-          <input name="teamName" placeholder="Team Name" onChange={handleChange} required className="border p-2 w-full rounded" />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Leader Name</label>
-          <input name="leaderName" placeholder="Team Leader Name" onChange={handleChange} required className="border p-2 w-full rounded" />
-          {errors.leaderName && <p className="text-red-500 text-xs">{errors.leaderName}</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Mobile</label>
-          <input name="leaderMobile" placeholder="Mobile" onChange={handleChange} required className="border p-2 w-full rounded" />
-          {errors.leaderMobile && <p className="text-red-500 text-xs">{errors.leaderMobile}</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium">WhatsApp</label>
-          <input name="leaderWhatsapp" placeholder="WhatsApp" onChange={handleChange} required className="border p-2 w-full rounded" />
-          {errors.leaderWhatsapp && <p className="text-red-500 text-xs">{errors.leaderWhatsapp}</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Email</label>
-          <input name="leaderEmail" placeholder="Email" onChange={handleChange} required className="border p-2 w-full rounded" />
-          {errors.leaderEmail && <p className="text-red-500 text-xs">{errors.leaderEmail}</p>}
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Roll No/ID</label>
-          <input name="leaderRollNo" placeholder="Roll No/Student ID" onChange={handleChange} required className="border p-2 w-full rounded" />
-        </div>
-        <div className="col-span-2">
-          <label className="block text-sm font-medium">Event</label>
-          <Select options={events} onChange={(sel) => handleSelect('event', sel)} placeholder="Choose Event" />
-        </div>
-        <div className="col-span-2">
-          <label className="block text-sm font-medium">Team Size</label>
-          <Select options={teamSizes} value={teamSizes.find(s => s.value === formData.teamSize)} onChange={handleTeamSize} placeholder="Team Size" />
-        </div>
-        {formData.teamMembers.map((_, index) => (
-          <div key={index} className="col-span-2 grid grid-cols-2 gap-4">
-            <input placeholder={`Member ${index + 1} Name`} onChange={(e) => handleMemberChange(index, 'name', e.target.value)} required className="border p-2 rounded" />
-            <input placeholder={`Member ${index + 1} Email`} onChange={(e) => handleMemberChange(index, 'email', e.target.value)} required className="border p-2 rounded" />
-          </div>
-        ))}
-        <div className="col-span-2">
-          <label className="block text-sm font-medium">Student Type</label>
-          <div className="flex space-x-4">
-            <label><input type="radio" name="studentType" value="college" checked={formData.studentType === 'college'} onChange={handleChange} /> College</label>
-            <label><input type="radio" name="studentType" value="school" checked={formData.studentType === 'school'} onChange={handleChange} /> School</label>
-          </div>
-        </div>
-        <div className="col-span-2">
-          <label className="block text-sm font-medium">Institution</label>
-          <Select options={formData.studentType === 'college' ? colleges : schools} onChange={(sel) => handleSelect('institution', sel)} placeholder="Select Institution" />
-        </div>
-        {formData.studentType === 'college' ? (
-          <>
-            <div><Select options={courses} onChange={(sel) => handleSelect('course', sel)} placeholder="Course" /></div>
-            <div><Select options={branches} onChange={(sel) => handleSelect('branch', sel)} placeholder="Branch" /></div>
-            <div><Select options={years} onChange={(sel) => handleSelect('year', sel)} placeholder="Year" /></div>
-          </>
-        ) : (
-          <div className="col-span-2"><Select options={classes} onChange={(sel) => handleSelect('class', sel)} placeholder="Class" /></div>
-        )}
-        <div className="col-span-2">
-  <label className="block text-sm font-medium">
-    ID Proof (Image &lt;3MB)
-  </label>
-  <input 
-    type="file" 
-    onChange={handleFile} 
-    accept="image/*" 
-    required 
-    className="mt-1 block w-full text-sm text-gray-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-indigo-50 file:text-indigo-700
-      hover:file:bg-indigo-100"
-  />
-  {progress > 0 && (
-    <div className="bg-blue-200 h-2 rounded mt-2 overflow-hidden">
-      <div 
-        className="bg-blue-500 h-full rounded transition-all duration-300"
-        style={{ width: `${progress}%` }}
-      />
-    </div>
-  )}
-</div>
+    <div className="min-h-screen bg-linear-to-br from-slate-950 via-blue-950 to-slate-900 overflow-hidden pt-24 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-20 left-10 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
-      <button type="submit" disabled={loading} className="mt-6 bg-indigo-600 text-white p-3 w-full rounded hover:bg-indigo-700 flex justify-center">
-        {loading ? <Loader2 className="animate-spin" /> : 'Submit'}
-      </button>
-    </form>
+
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        className="relative z-10 max-w-6xl mx-auto"
+      >
+        {/* Header */}
+        <motion.div className="text-center mb-12 sm:mb-16" variants={itemVariants}>
+          <div className="inline-block mb-4 px-6 py-2 bg-linear-to-r from-orange-500/20 to-purple-500/20 border border-orange-500/30 rounded-full backdrop-blur-sm">
+            <span className="text-sm font-semibold bg-linear-to-r from-orange-400 to-purple-400 bg-clip-text text-transparent">Register Now</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-linear-to-r from-orange-400 via-orange-500 to-purple-500 bg-clip-text text-transparent tracking-tight">
+            CROSSROADS 2026
+          </h1>
+          <p className="text-gray-400 text-lg sm:text-xl font-light">Join us for an unforgettable festival of innovation</p>
+        </motion.div>
+
+        {/* Main Form Container */}
+        <motion.form
+          onSubmit={handleSubmit}
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
+          className="bg-linear-to-br from-slate-900/40 via-blue-900/20 to-slate-900/40 backdrop-blur-2xl border border-orange-500/20 rounded-3xl shadow-2xl overflow-hidden"
+          style={{
+            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 60px rgba(249, 115, 22, 0.1)'
+          }}
+        >
+          {/* Top Accent Bar */}
+          <div className="h-1.5 bg-linear-to-r from-orange-500 via-purple-500 to-orange-500"></div>
+
+          <div className="p-6 sm:p-8 md:p-12 lg:p-16">
+            {/* Team Information Section */}
+            <motion.div variants={itemVariants} className="mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-lg bg-linear-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                  <Users size={24} className="text-white" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Team Information</h2>
+              </div>
+
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+              >
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Team Name *</label>
+                  <input
+                    name="teamName"
+                    placeholder="Enter your team name"
+                    onChange={handleChange}
+                    value={formData.teamName}
+                    required
+                    className={inputClasses}
+                  />
+                  {errors.teamName && <p className="text-red-400 text-xs font-medium">{errors.teamName}</p>}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Leader Name *</label>
+                  <input
+                    name="leaderName"
+                    placeholder="Full name"
+                    onChange={handleChange}
+                    value={formData.leaderName}
+                    required
+                    className={inputClasses}
+                  />
+                  {errors.leaderName && <p className="text-red-400 text-xs font-medium">{errors.leaderName}</p>}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Mobile Number *</label>
+                  <input
+                    name="leaderMobile"
+                    placeholder="10-digit number"
+                    onChange={handleChange}
+                    value={formData.leaderMobile}
+                    required
+                    className={inputClasses}
+                  />
+                  {errors.leaderMobile && <p className="text-red-400 text-xs font-medium">{errors.leaderMobile}</p>}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">WhatsApp Number *</label>
+                  <input
+                    name="leaderWhatsapp"
+                    placeholder="10-digit number"
+                    onChange={handleChange}
+                    value={formData.leaderWhatsapp}
+                    required
+                    className={inputClasses}
+                  />
+                  {errors.leaderWhatsapp && <p className="text-red-400 text-xs font-medium">{errors.leaderWhatsapp}</p>}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Email Address *</label>
+                  <input
+                    name="leaderEmail"
+                    placeholder="your.email@example.com"
+                    onChange={handleChange}
+                    value={formData.leaderEmail}
+                    required
+                    className={inputClasses}
+                  />
+                  {errors.leaderEmail && <p className="text-red-400 text-xs font-medium">{errors.leaderEmail}</p>}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Roll No / ID *</label>
+                  <input
+                    name="leaderRollNo"
+                    placeholder="Student ID"
+                    onChange={handleChange}
+                    value={formData.leaderRollNo}
+                    required
+                    className={inputClasses}
+                  />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Event & Team Size */}
+            <motion.div variants={itemVariants} className="mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-lg bg-linear-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                  <span className="text-xl">🎯</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Event Details</h2>
+              </div>
+
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+              >
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Select Event *</label>
+                  <Select
+                    options={events}
+                    onChange={(sel) => handleSelect('event', sel)}
+                    placeholder="Choose your event..."
+                    styles={customSelectStyles}
+                    isSearchable
+                  />
+                  {errors.event && <p className="text-red-400 text-xs font-medium">{errors.event}</p>}
+                </motion.div>
+
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Team Size</label>
+                  <Select
+                    options={teamSizes}
+                    value={teamSizes.find(s => s.value === formData.teamSize)}
+                    onChange={handleTeamSize}
+                    placeholder="Select team size..."
+                    styles={customSelectStyles}
+                  />
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Team Members */}
+            {formData.teamMembers.length > 0 && (
+              <motion.div variants={itemVariants} className="mb-12 p-6 bg-white/5 border border-purple-500/20 rounded-2xl backdrop-blur-sm">
+                <h3 className="text-lg font-bold text-purple-400 mb-6">Team Members</h3>
+                <motion.div
+                  variants={staggerContainer}
+                  initial="hidden"
+                  animate="visible"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                >
+                  {formData.teamMembers.map((_, index) => (
+                    <motion.div key={index} variants={itemVariants} className="space-y-3">
+                      <input
+                        placeholder={`Member ${index + 2} Name`}
+                        onChange={(e) => handleMemberChange(index, 'name', e.target.value)}
+                        value={formData.teamMembers[index].name}
+                        required
+                        className={inputClasses}
+                      />
+                      <input
+                        placeholder={`Member ${index + 2} Email`}
+                        onChange={(e) => handleMemberChange(index, 'email', e.target.value)}
+                        value={formData.teamMembers[index].email}
+                        required
+                        className={inputClasses}
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            )}
+
+            {/* Academic Information */}
+            <motion.div variants={itemVariants} className="mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-lg bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                  <GraduationCap size={24} className="text-white" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">Academic Information</h2>
+              </div>
+
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="space-y-6"
+              >
+                {/* Student Type */}
+                <motion.div variants={itemVariants} className="space-y-3">
+                  <label className="block text-sm font-semibold text-gray-300">Student Type</label>
+                  <div className="flex gap-4">
+                    {['college', 'school'].map((type) => (
+                      <label key={type} className="flex items-center gap-3 cursor-pointer group">
+                        <input
+                          type="radio"
+                          name="studentType"
+                          value={type}
+                          checked={formData.studentType === type}
+                          onChange={handleChange}
+                          className="w-5 h-5 cursor-pointer accent-orange-500"
+                        />
+                        <span className="text-gray-300 group-hover:text-orange-400 transition-colors capitalize font-medium">{type === 'college' ? 'College' : 'School'}</span>
+                      </label>
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* Institution */}
+                <motion.div variants={itemVariants} className="space-y-2">
+                  <label className="block text-sm font-semibold text-gray-300">Institution *</label>
+                  <Select
+                    options={formData.studentType === 'college' ? colleges : schools}
+                    onChange={(sel) => handleSelect('institution', sel)}
+                    placeholder="Select your institution..."
+                    styles={customSelectStyles}
+                    isSearchable
+                  />
+                  {errors.institution && <p className="text-red-400 text-xs font-medium">{errors.institution}</p>}
+                </motion.div>
+
+                {/* Course/Branch/Year for College */}
+                {formData.studentType === 'college' ? (
+                  <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-1 sm:grid-cols-3 gap-6"
+                  >
+                    <motion.div variants={itemVariants} className="space-y-2">
+                      <label className="block text-sm font-semibold text-gray-300">Course</label>
+                      <Select
+                        options={courses}
+                        value={formData.course}
+                        onChange={(sel) => handleSelect('course', sel)}
+                        placeholder="Select course..."
+                        styles={customSelectStyles}
+                      />
+                    </motion.div>
+                    <motion.div variants={itemVariants} className="space-y-2">
+                      <label className="block text-sm font-semibold text-gray-300">Branch</label>
+                      <Select
+                        options={branches}
+                        value={formData.branch}
+                        onChange={(sel) => handleSelect('branch', sel)}
+                        placeholder="Select branch..."
+                        styles={customSelectStyles}
+                      />
+                    </motion.div>
+                    <motion.div variants={itemVariants} className="space-y-2">
+                      <label className="block text-sm font-semibold text-gray-300">Year</label>
+                      <Select
+                        options={years}
+                        value={formData.year}
+                        onChange={(sel) => handleSelect('year', sel)}
+                        placeholder="Select year..."
+                        styles={customSelectStyles}
+                      />
+                    </motion.div>
+                  </motion.div>
+                ) : (
+                  <motion.div variants={itemVariants} className="space-y-2">
+                    <label className="block text-sm font-semibold text-gray-300">Class</label>
+                    <Select
+                      options={classes}
+                      value={formData.class}
+                      onChange={(sel) => handleSelect('class', sel)}
+                      placeholder="Select class..."
+                      styles={customSelectStyles}
+                    />
+                  </motion.div>
+                )}
+              </motion.div>
+            </motion.div>
+
+            {/* ID Proof Upload */}
+            <motion.div variants={itemVariants} className="mb-12">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-10 h-10 rounded-lg bg-linear-to-br from-green-500 to-green-600 flex items-center justify-center">
+                  <FileUp size={24} className="text-white" />
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white">ID Proof</h2>
+              </div>
+
+              <div className="relative">
+                <input
+                  type="file"
+                  onChange={handleFile}
+                  accept="image/*"
+                  required
+                  className="hidden"
+                  id="file-input"
+                />
+                <label
+                  htmlFor="file-input"
+                  className="flex flex-col items-center justify-center gap-4 w-full px-6 py-8 sm:py-12 border-2 border-dashed border-orange-500/40 rounded-2xl cursor-pointer hover:border-orange-500/70 hover:bg-orange-500/5 transition-all duration-300 group backdrop-blur-sm"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="text-center"
+                  >
+                    <FileUp className="w-12 h-12 text-orange-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                    <p className="text-gray-300 font-semibold text-base sm:text-lg">
+                      {formData.idProof ? formData.idProof.name : 'Upload ID Proof'}
+                    </p>
+                    <p className="text-gray-500 text-sm mt-2">PNG, JPG • Max 3MB</p>
+                  </motion.div>
+                </label>
+              </div>
+
+              {errors.idProof && <p className="text-red-400 text-xs font-medium mt-2">{errors.idProof}</p>}
+              {formData.idProof && (
+                <motion.p
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-green-400 text-xs font-medium mt-3 flex items-center gap-2"
+                >
+                  <CheckCircle2 size={16} /> {formData.idProof.name}
+                </motion.p>
+              )}
+
+              {progress > 0 && progress < 100 && (
+                <motion.div className="mt-6" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs text-gray-400 font-medium">Uploading</span>
+                    <span className="text-xs text-orange-400 font-semibold">{progress}%</span>
+                  </div>
+                  <div className="h-2 bg-slate-800 rounded-full overflow-hidden border border-orange-500/30">
+                    <motion.div
+                      className="h-full bg-linear-to-r from-orange-500 to-purple-500"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </motion.div>
+
+            {/* Submit Button */}
+            <motion.div variants={itemVariants}>
+              <motion.button
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full py-4 px-6 bg-linear-to-r from-orange-500 via-orange-500 to-purple-600 hover:from-orange-600 hover:via-orange-600 hover:to-purple-700 text-white font-bold text-lg rounded-xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-2xl hover:shadow-orange-500/40 disabled:opacity-60 disabled:cursor-not-allowed relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                {loading ? (
+                  <>
+                    <Loader2 className="animate-spin" size={22} />
+                    <span>Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle2 size={22} />
+                    <span>Register Now</span>
+                    <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </motion.button>
+            </motion.div>
+
+            {/* Footer Text */}
+            <motion.p variants={itemVariants} className="text-center text-gray-500 text-xs sm:text-sm mt-8">
+              By registering, you agree to our terms and conditions. We'll send a confirmation to your email.
+            </motion.p>
+          </div>
+        </motion.form>
+      </motion.div>
+    </div>
   );
 };
 

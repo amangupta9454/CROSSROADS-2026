@@ -217,7 +217,7 @@ export default function Schedule() {
   const [countdown, setCountdown] = useState("");
 
   useEffect(() => {
-    const eventDate = new Date('2025-11-28T00:00:00').getTime();
+    const eventDate = new Date('2026-02-20T00:00:00+05:30').getTime();
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = eventDate - now;
