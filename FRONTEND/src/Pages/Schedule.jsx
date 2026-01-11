@@ -250,7 +250,7 @@ export default function Schedule() {
       <div className="fixed top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_bottom_right,var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent pointer-events-none" />
       <div className="fixed bottom-0 left-1/2 w-full h-full bg-[radial-gradient(ellipse_at_bottom,var(--tw-gradient-stops))] from-rose-900/5 via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative z-10 py-8 sm:py-16 lg:py-20 px-3 sm:px-6 lg:px-8">
+      <div className="relative z-10 py-8 sm:py-16 lg:py-20 px-3 sm:px-6 lg:px-8 pt-28 sm:pt-36 lg:pt-34">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
@@ -265,7 +265,7 @@ export default function Schedule() {
               className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 bg-linear-to-r from-zinc-900/80 to-zinc-800/80 backdrop-blur-xl rounded-full border border-orange-500/30 mb-4 sm:mb-6 lg:mb-8 shadow-lg shadow-orange-500/10"
             >
               <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" />
-              <span className="text-xs sm:text-sm text-zinc-200 font-semibold tracking-wide">November 28-29, 2025</span>
+              <span className="text-xs sm:text-sm text-zinc-200 font-semibold tracking-wide">February 2026</span>
               <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-orange-400" />
             </motion.div>
             

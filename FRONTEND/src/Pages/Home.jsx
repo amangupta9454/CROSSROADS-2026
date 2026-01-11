@@ -75,21 +75,6 @@ const Home = () => {
 
   const prizes = [
     {
-      place: '2nd Place',
-      title: 'Silver Spell',
-      amount: '₹5,000',
-      color: 'purple',
-      gradient: 'from-purple-600 to-purple-500',
-      bgGradient: 'rgba(139, 92, 246, 0.05)',
-      borderColor: 'rgba(139, 92, 246, 0.3)',
-      rewards: [
-        'Cash prize',
-        'Certificates and Trophy',
-        'Exclusive Mentorship Sessions',
-        'Goodies'
-      ]
-    },
-    {
       place: '1st Place',
       title: 'Grand Sorcerer',
       amount: '₹7,000',
@@ -105,6 +90,22 @@ const Home = () => {
         'Goodies'
       ]
     },
+    {
+      place: '2nd Place',
+      title: 'Silver Spell',
+      amount: '₹5,000',
+      color: 'purple',
+      gradient: 'from-purple-600 to-purple-500',
+      bgGradient: 'rgba(139, 92, 246, 0.05)',
+      borderColor: 'rgba(139, 92, 246, 0.3)',
+      rewards: [
+        'Cash prize',
+        'Certificates and Trophy',
+        'Exclusive Mentorship Sessions',
+        'Goodies'
+      ]
+    },
+    
     {
       place: '3rd Place',
       title: 'Bronze Witch',
@@ -124,16 +125,16 @@ const Home = () => {
 
  const faqs = [
   {
-    question: 'What is CROSSROADS 2025?',
-    answer: 'CROSSROADS 2025 is our college’s annual technical and cultural fest featuring a blend of innovation, creativity, and talent. It includes exciting technical events like Project Exhibition, Robo Race, and Poster Presentation, along with cultural competitions such as Dance, Singing, Short Film, and many more.'
+    question: 'What is CROSSROADS 2026?',
+    answer: 'CROSSROADS 2026 is our college’s annual technical and cultural fest featuring a blend of innovation, creativity, and talent. It includes exciting technical events like Project Exhibition, Robo Race, and Poster Presentation, along with cultural competitions such as Dance, Singing, Short Film, and many more.'
   },
   {
     question: 'Who can participate in the fest?',
-    answer: 'Students from all colleges across India can participate in CROSSROADS 2025. Whether you are passionate about coding, robotics, arts, or performing, there’s an event for everyone!'
+    answer: 'Students from all colleges across India can participate in CROSSROADS 2026. Whether you are passionate about coding, robotics, arts, or performing, there’s an event for everyone!'
   },
   {
     question: 'Is there any registration fee?',
-    answer: 'Most events are free to register. However, a few competitions may have a minimal entry fee to cover materials or logistics. Details about each event’s fee (if any) are mentioned in their respective registration sections.'
+    answer: 'No, the registration for CROSSROADS 2026 is completely free of cost. Just sign up online through our official website to secure your spot in the fest.'
   },
   {
     question: 'Can I participate in multiple events?',
@@ -141,11 +142,11 @@ const Home = () => {
   },
   {
     question: 'How can I register for the events?',
-    answer: 'You can register online through the official CROSSROADS 2025 website. Visit the event page, select your desired event, and fill out the registration form. Confirmation details will be shared via email.'
+    answer: 'You can register online through the official CROSSROADS 2026 website. Visit the event page, select your desired event, and fill out the registration form. Confirmation details will be shared via email.'
   },
   {
-    question: 'When and where will CROSSROADS 2025 be held?',
-    answer: 'CROSSROADS 2025 will take place on November 28–29, 2025, at our college campus. Detailed venue information and event schedules will be shared closer to the date.'
+    question: 'When and where will CROSSROADS 2026 be held?',
+    answer: 'CROSSROADS 2026 will take place on February 20-21 2026, at our college campus. Detailed venue information and event schedules will be shared closer to the date.'
   },
   {
     question: 'Are there any prizes for winners?',
@@ -153,7 +154,7 @@ const Home = () => {
   },
   {
     question: 'Do participants need to bring anything?',
-    answer: 'Participants should bring their college ID cards, laptops or project materials (if applicable), and any specific items required for their event. All general arrangements such as WiFi, workspace, and refreshments will be provided.'
+    answer: 'Participants should bring their college ID cards, laptops or project materials (if applicable), and any specific items required for their event. All general arrangements such as WiFi, workspace will be provided.'
   },
   {
     question: 'Will food and accommodation be provided?',
@@ -161,7 +162,7 @@ const Home = () => {
   },
   {
     question: 'How can I stay updated about the fest?',
-    answer: 'All updates, schedules, and announcements will be shared on the official website and social media handles of CROSSROADS 2025. Make sure to follow us for the latest news!'
+    answer: 'All updates, schedules, and announcements will be shared on the official website and social media handles of CROSSROADS 2026. Make sure to follow us for the latest news!'
   }
 ];
 
@@ -196,14 +197,14 @@ const Home = () => {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center justify-center">
+      <div className="relative z-10 container mx-auto px-4 py-8 sm:py-12 flex flex-col items-center justify-center pt-24 sm:pt-20 md:pt-24">
         <motion.div
           ref={dateRef}
           className="mb-6 sm:mb-8 flex items-center gap-2 sm:gap-3 bg-linear-to-r from-orange-600 to-orange-500 px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg shadow-orange-600/50"
           whileHover={{ scale: 1.05 }}
         >
           <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="font-semibold text-sm sm:text-base md:text-lg">November 28, 2025</span>
+          <span className="font-semibold text-sm sm:text-base md:text-lg">Februrary 20 2026</span>
           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
         </motion.div>
 
@@ -353,7 +354,7 @@ const Home = () => {
                 </h3>
                 <div className="space-y-4 text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
                   <p>
-                    CROSSROADS 2025 is our college’s annual technical and cultural fest that celebrates innovation, creativity, and talent. It brings together students from diverse fields to showcase their skills through exciting events, competitions, and performances.
+                    CROSSROADS 2026 is our college’s annual technical and cultural fest that celebrates innovation, creativity, and talent. It brings together students from diverse fields to showcase their skills through exciting events, competitions, and performances.
                   </p>
                   <p>
                     From project exhibitions and robotics challenges to dance, music, and art — the fest offers a vibrant platform for young minds to connect, collaborate, and create unforgettable memories.

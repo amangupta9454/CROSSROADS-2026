@@ -1,5 +1,6 @@
 import React, { useState,  useRef } from 'react';
 import { Link } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, MapPin, Trophy, Users, X, Sparkles, ChevronRight } from 'lucide-react';
 import event1 from '../assets/coding.jpg';
@@ -36,7 +37,7 @@ const events = [
     category: 'Technical',
     details: {
       description: 'A coding quiz to challenge logical and programming skills.',
-      timing: 'April 20, 2025, 9:00 AM - April 21, 2025, 9:00 AM',
+      timing: 'Feb 20 2026, 9:00 AM - 12:00 PM',
       location: 'Block 1 Lab F',
       judgingCriteria: 'Innovation, Functionality, Design, Presentation',
       organizer: 'Tech Fusion',
@@ -49,8 +50,8 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Display and present innovative student projects across domains.',
-      timing: 'April 22, 2025, 10:00 AM - 2:00 PM',
-      location: 'AI Research Center',
+      timing: 'Feb 20, 2026, 10:00 AM  February 21, 2026, 4:00 PM',
+      location: 'Amphitheatre Hall',
       judgingCriteria: 'Originality, Impact, Technical Execution',
       organizer: 'Tech Fusion',
     },
@@ -62,8 +63,8 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Compete with your robots in high-speed challenges.',
-      timing: 'April 23, 2025, 1:00 PM - 5:00 PM',
-      location: 'Innovation Arena',
+      timing: 'Feb 20, 2026, 1:00 PM - 5:00 PM',
+      location: 'Hi Tech Ground',
       judgingCriteria: 'Speed, Control, Design, Navigation',
       organizer: 'Tech Fusion',
     },
@@ -75,8 +76,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Showcase of traditional and contemporary performances.',
-      timing: 'April 24, 2025, 9:00 AM - 3:00 PM',
-      location: 'Auditorium',
+      timing: 'Feb 20, 2026, 9:00 AM  February 21, 2026, 6:00 PM',
+      location: 'Amphitheatre Stage',
       judgingCriteria: 'Creativity, Presentation, Crowd Engagement',
       organizer: 'Tech Fusion',
     },
@@ -88,8 +89,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Create beautiful rangoli designs using vibrant colors.',
-      timing: 'April 25, 2025, 10:00 AM - 4:00 PM',
-      location: 'Cultural Hall',
+      timing: 'Feb 20, 2026, 10:00 AM - 4:00 PM',
+      location: 'Block 2 Courtyard',
       judgingCriteria: 'Creativity, Neatness, Color Usage, Theme Representation',
       organizer: 'Tech Fusion',
     },
@@ -101,8 +102,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Prepare delicious dishes without using fire or heat.',
-      timing: 'April 26, 2025, 9:00 AM - 5:00 PM',
-      location: 'Cafeteria Hall',
+      timing: 'Feb 20, 2026, 9:00 AM - 5:00 PM',
+      location: 'Block 3 Cafeteria',
       judgingCriteria: 'Taste, Presentation, Innovation, Hygiene',
       organizer: 'Tech Fusion',
     },
@@ -114,8 +115,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Perform impactful street plays on social issues.',
-      timing: 'April 27-28, 2025, 10:00 AM',
-      location: 'Open Stage',
+      timing: 'Feb 20-21, 2026, 10:00 AM',
+      location: ' Amphitheatre Lawn',
       judgingCriteria: 'Message Clarity, Acting, Engagement, Theme Relevance',
       organizer: 'Tech Fusion',
     },
@@ -127,8 +128,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Showcase your vocal talent across genres and languages.',
-      timing: 'April 29, 2025, 11:00 AM - 3:00 PM',
-      location: 'Auditorium',
+      timing: 'Feb 20-21, 2026, 11:00 AM - 3:00 PM',
+      location: 'Amphitheatre Stage',
       judgingCriteria: 'Vocal Quality, Pitch, Expression, Stage Presence',
       organizer: 'Tech Fusion',
     },
@@ -140,8 +141,8 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Present technical concepts and innovations through posters.',
-      timing: 'April 30, 2025, 9:00 AM - 1:00 PM',
-      location: 'Exhibition Hall',
+      timing: 'Feb 20, 2026, 9:00 AM - 1:00 PM',
+      location: 'Block 1 Corridor',
       judgingCriteria: 'Content Clarity, Design, Innovation, Presentation',
       organizer: 'Tech Fusion',
     },
@@ -153,8 +154,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Dance teams from various colleges compete with style and energy.',
-      timing: 'April 30, 2025, 2:00 PM - 6:00 PM',
-      location: 'Main Auditorium',
+      timing: 'Feb 20-21, 2026, 2:00 PM - 6:00 PM',
+      location: 'Amphitheatre Stage',
       judgingCriteria: 'Choreography, Synchronization, Expression, Costume',
       organizer: 'Tech Fusion',
     },
@@ -166,8 +167,8 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Bands compete by performing electrifying live music sets.',
-      timing: 'April 30, 2025, 6:30 PM - 9:30 PM',
-      location: 'Main Stage',
+      timing: 'Feb 21, 2026, 6:30 PM - 9:30 PM',
+      location: 'Amphitheatre Stage',
       judgingCriteria: 'Music Quality, Stage Presence, Originality, Coordination',
       organizer: 'Tech Fusion',
     },
@@ -179,8 +180,8 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Create a short film showcasing storytelling, direction, and editing skills.',
-      timing: 'May 1, 2025, 10:00 AM - 4:00 PM',
-      location: 'Media Lab',
+      timing: 'Feb 20, 2026, 10:00 AM - 4:00 PM',
+      location: 'Block 3 Corridor',
       judgingCriteria: 'Storytelling, Creativity, Technical Execution, Impact',
       organizer: 'Tech Fusion',
     },
@@ -192,7 +193,7 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Create fun and creative advertisements for fictional products.',
-      timing: 'May 2, 2025, 11:00 AM - 3:00 PM',
+      timing: 'Feb 20, 2026, 11:00 AM - 3:00 PM',
       location: 'Seminar Hall',
       judgingCriteria: 'Creativity, Humor, Messaging, Presentation',
       organizer: 'Tech Fusion',
@@ -205,7 +206,7 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Solve clues and find hidden items in a campus-wide adventure.',
-      timing: 'May 3, 2025, 9:00 AM - 1:00 PM',
+      timing: 'Feb 20, 2026, 9:00 AM - 1:00 PM',
       location: 'College Grounds',
       judgingCriteria: 'Teamwork, Time Management, Problem-Solving',
       organizer: 'Tech Fusion',
@@ -232,72 +233,71 @@ const winners = [
 
 const EventCard = ({ event, onClick, index }) => {
   const [loaded, setLoaded] = useState(false);
-  const cardRef = useRef(null);
 
   return (
     <motion.div
-      ref={cardRef}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -10 }}
-      className="group relative bg-linear-to-br from-zinc-900 to-zinc-800 rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-orange-500/50 transition-all duration-500 cursor-pointer"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: index * 0.08 }}
+      whileHover={{ y: -12, scale: 1.02 }}
+      className="group relative bg-linear-to-br from-zinc-900/90 to-zinc-800/70 backdrop-blur-sm 
+                 rounded-2xl overflow-hidden border border-zinc-700/40 hover:border-orange-500/40 
+                 transition-all duration-500 cursor-pointer shadow-xl shadow-black/20"
       onClick={onClick}
     >
-      <div className="absolute inset-0 bg-linear-to-br from-orange-500/10 via-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      
-      <div className="relative h-56 overflow-hidden">
-        {!loaded && (
-          <div className="absolute inset-0 bg-zinc-800 animate-pulse" />
-        )}
+      <div className="absolute inset-0 bg-linear-to-br from-orange-600/10 via-purple-600/10 to-transparent 
+                      opacity-0 group-hover:opacity-80 transition-opacity duration-700 pointer-events-none" />
+
+      <div className="relative h-64 overflow-hidden">
+        {!loaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
         <motion.img
-          className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+          className={`w-full h-full object-cover transition-all duration-700 ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
           src={event.imageSrc}
           alt={event.name}
           onLoad={() => setLoaded(true)}
-          whileHover={{ scale: 1.1 }}
-          transition={{ duration: 0.6 }}
+          whileHover={{ scale: 1.15 }}
+          transition={{ duration: 0.9 }}
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent opacity-80" />
-        
-        <div className="absolute top-3 right-3">
-          <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-            event.category === 'Technical' 
-              ? 'bg-orange-500 text-white' 
-              : 'bg-purple-500 text-white'
-          }`}>
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+
+        <div className="absolute top-4 right-4">
+          <span className={`px-4 py-1.5 text-xs font-bold rounded-full tracking-wide shadow-md
+            ${event.category === 'Technical' 
+              ? 'bg-linear-to-r from-orange-600 to-amber-600 text-white' 
+              : 'bg-linear-to-r from-purple-600 to-indigo-600 text-white'}`}>
             {event.category}
           </span>
         </div>
       </div>
 
-      <div className="p-5 relative z-10">
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors duration-300">
+      <div className="p-6">
+        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">
           {event.name}
         </h3>
-        
-        <p className="text-sm text-zinc-400 mb-4 line-clamp-2">
+
+        <p className="text-sm text-zinc-400 mb-5 line-clamp-2 leading-relaxed">
           {event.details.description}
         </p>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs text-zinc-500">
+          <div className="flex items-center gap-2 text-sm text-zinc-500">
             <Calendar className="w-4 h-4" />
-            <span className="line-clamp-1">November 2025</span>
+            <span>Feb 2026</span>
           </div>
-          
+
           <motion.div
-            className="flex items-center gap-1 text-orange-500 text-sm font-semibold"
-            whileHover={{ x: 5 }}
+            className="flex items-center gap-2 text-orange-400 text-sm font-semibold"
+            whileHover={{ x: 6 }}
           >
-            <span>Details</span>
-            <ChevronRight className="w-4 h-4" />
+            <span>View Details</span>
+            <ChevronRight className="w-5 h-5" />
           </motion.div>
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-orange-500 via-purple-500 to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-orange-500 via-purple-500 to-orange-500 
+                      transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
     </motion.div>
   );
 };
@@ -307,39 +307,34 @@ const WinnerCard = ({ winner, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.88 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.05 }}
-      whileHover={{ scale: 1.05, rotate: 2 }}
-      className="group relative bg-linear-to-br from-zinc-900 to-zinc-800 rounded-2xl overflow-hidden border border-zinc-700/50 hover:border-purple-500/50 transition-all duration-500"
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.06 }}
+      whileHover={{ scale: 1.08, rotate: 1.5 }}
+      className="group relative rounded-2xl overflow-hidden border border-zinc-700/40 
+                 bg-linear-to-br from-zinc-900 to-zinc-800 shadow-xl shadow-black/25"
     >
-      <div className="absolute inset-0 bg-linear-to-br from-purple-500/10 via-orange-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-      
-      <div className="relative h-72 overflow-hidden">
-        {!loaded && (
-          <div className="absolute inset-0 bg-zinc-800 animate-pulse" />
-        )}
-        <motion.img
-          className={`w-full h-full object-cover transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      <div className="relative h-80 overflow-hidden">
+        {!loaded && <div className="absolute inset-0 bg-zinc-800 animate-pulse" />}
+        <img
+          className={`w-full h-full object-cover transition-all duration-700 ${loaded ? 'scale-100' : 'scale-110 opacity-0'}`}
           src={winner.imageSrc}
           alt={winner.name}
           onLoad={() => setLoaded(true)}
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-60" />
-        
-        <div className="absolute top-3 right-3">
+        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-transparent/30" />
+
+        <div className="absolute top-4 right-4">
           <motion.div
-            animate={{ rotate: [0, 15, -15, 0] }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-            className="bg-linear-to-br from-yellow-400 to-orange-500 p-2 rounded-full"
+            animate={{ rotate: [0, 12, -12, 0] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="bg-linear-to-br from-yellow-400 via-amber-500 to-orange-600 p-3 rounded-full shadow-lg shadow-amber-600/40"
           >
-            <Trophy className="w-5 h-5 text-white" />
+            <Trophy className="w-6 h-6 text-white" />
           </motion.div>
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-purple-500 via-orange-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
     </motion.div>
   );
 };
@@ -350,213 +345,212 @@ const Events = () => {
 
   const filteredEvents = filter === 'All' 
     ? events 
-    : events.filter(event => event.category === filter);
+    : events.filter(e => e.category === filter);
 
   return (
-    <div className="relative min-h-screen bg-zinc-950 overflow-hidden">
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,#ff6b1a15_0%,transparent_65%)] pointer-events-none" />
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_80%_20%,#8b5cf615_0%,transparent_50%)] pointer-events-none" />
-      
-      <div className="relative z-10 py-20 px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-zinc-950 overflow-hidden pb-20">
+      {/* Background gradients */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,#ff6b1a20_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,#a855f720_0%,transparent_50%)]" />
+      </div>
+
+      <div className="relative z-10 py-24 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <motion.div
-            initial={{ opacity: 0, y: -30 }}
+            initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9 }}
             className="text-center mb-16"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="inline-block mb-4"
-            >
-              <Sparkles className="w-12 h-12 text-orange-500 mx-auto" />
-            </motion.div>
-            
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4">
+            <Sparkles className="w-16 h-16 text-orange-500 mx-auto mb-6 animate-pulse" />
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight">
               <span className="text-orange-500">CROSS</span>
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-purple-600">ROADS</span>
+              <span className="bg-linear-to-r from-purple-400 via-fuchsia-500 to-purple-600 bg-clip-text text-transparent">
+                ROADS
+              </span>
             </h1>
-            <p className="text-xl text-zinc-400 mt-4">Tech Fest 2025 Events</p>
+            <p className="mt-5 text-xl md:text-2xl text-zinc-400 font-light">
+              Tech + Cultural Fest • February 2026
+            </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex justify-center gap-4 mb-12 flex-wrap"
-          >
-            {['All', 'Technical', 'Cultural'].map((category) => (
+          {/* Filter Buttons */}
+          <div className="flex justify-center gap-4 md:gap-6 mb-16 flex-wrap">
+            {['All', 'Technical', 'Cultural'].map((cat) => (
               <motion.button
-                key={category}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setFilter(category)}
-                className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
-                  filter === category
-                    ? 'bg-linear-to-r from-orange-500 to-purple-600 text-white shadow-lg shadow-orange-500/30'
-                    : 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 border border-zinc-700'
-                }`}
+                key={cat}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.96 }}
+                onClick={() => setFilter(cat)}
+                className={`px-8 py-3 rounded-full font-medium text-base transition-all duration-300 shadow-lg
+                  ${filter === cat
+                    ? 'bg-linear-to-r from-orange-600 to-purple-700 text-white shadow-orange-500/30'
+                    : 'bg-zinc-800/80 backdrop-blur-sm text-zinc-300 hover:bg-zinc-700/80 border border-zinc-700'}`}
               >
-                {category}
+                {cat}
               </motion.button>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-20"
-          >
+          {/* Events Grid */}
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 mb-32">
             <AnimatePresence mode="wait">
-              {filteredEvents.map((event, index) => (
+              {filteredEvents.map((event, i) => (
                 <EventCard
                   key={event.id}
                   event={event}
                   onClick={() => setSelectedEvent(event)}
-                  index={index}
+                  index={i}
                 />
               ))}
             </AnimatePresence>
           </motion.div>
 
-          <motion.div
+          {/* Hall of Fame */}
+          <motion.section
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-24"
+            transition={{ duration: 1 }}
+            className="mt-32"
           >
-            <div className="text-center mb-12">
-              <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="inline-block mb-4"
-              >
-                <Trophy className="w-12 h-12 text-purple-500 mx-auto" />
-              </motion.div>
-              
-              <h2 className="text-4xl sm:text-5xl font-extrabold mb-4">
-                <span className="text-transparent bg-clip-text bg-linear-to-r from-orange-500 to-purple-600">
-                  Hall of Fame
-                </span>
+            <div className="text-center mb-16">
+              <Trophy className="w-16 h-16 text-purple-500 mx-auto mb-6" />
+              <h2 className="text-5xl md:text-6xl font-black bg-linear-to-r from-orange-400 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">
+                Hall of Fame
               </h2>
-              <p className="text-xl text-zinc-400">Winners of Tech Fest 2024</p>
+              <p className="mt-4 text-xl text-zinc-400">Proud Winners • Tech Fest 2024</p>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-              {winners.map((winner, index) => (
-                <WinnerCard key={winner.id} winner={winner} index={index} />
+              {winners.map((winner, i) => (
+                <WinnerCard key={winner.id} winner={winner} index={i} />
               ))}
             </div>
-          </motion.div>
+          </motion.section>
         </div>
       </div>
 
+      {/* ===================== MODAL ===================== */}
       <AnimatePresence>
         {selectedEvent && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-100 flex items-center justify-center p-4 md:p-6"
             onClick={() => setSelectedEvent(null)}
           >
+            {/* Backdrop */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/75 backdrop-blur-xl"
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0, y: 60 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="relative bg-linear-to-br from-zinc-900 to-zinc-800 rounded-3xl p-12 sm:p-16 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-zinc-700 shadow-2xl"
+              exit={{ scale: 0.8, opacity: 0, y: 40 }}
+              transition={{ type: "spring", damping: 22, stiffness: 280 }}
+              className="relative bg-linear-to-br from-zinc-900/95 to-zinc-800/95 backdrop-blur-xl 
+                         rounded-3xl p-6 sm:p-10 md:p-12 max-w-3xl w-full max-h-[92vh] overflow-y-auto 
+                         border border-zinc-700/60 shadow-2xl shadow-black/60"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="absolute top-12 right-4 p-2 rounded-full bg-zinc-800 hover:bg-red-500 text-zinc-400 hover:text-white transition-all duration-300 z-10"
+                className="absolute top-5 right-5 md:top-6 md:right-6 p-3 rounded-full 
+                           bg-zinc-800/80 hover:bg-red-600/80 text-zinc-400 hover:text-white 
+                           transition-all duration-300 z-10 backdrop-blur-sm border border-zinc-700/50"
               >
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
 
-              <div className="relative h-64 rounded-2xl overflow-hidden mb-6">
+              <div className="relative h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
                 <img
                   src={selectedEvent.imageSrc}
                   alt={selectedEvent.name}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                    selectedEvent.category === 'Technical' 
-                      ? 'bg-orange-500 text-white' 
-                      : 'bg-purple-500 text-white'
-                  }`}>
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+
+                <div className="absolute bottom-5 left-5">
+                  <span className={`px-4 py-2 text-sm font-bold rounded-full shadow-lg
+                    ${selectedEvent.category === 'Technical' 
+                      ? 'bg-linear-to-r from-orange-600 to-amber-600' 
+                      : 'bg-linear-to-r from-purple-600 to-indigo-600'} text-white`}>
                     {selectedEvent.category}
                   </span>
                 </div>
               </div>
 
-              <h3 className="text-3xl font-extrabold text-white mb-4 bg-linear-to-r from-orange-400 to-purple-400 bg-clip-text ">
+              <h3 className="text-3xl md:text-4xl font-extrabold mb-5 bg-linear-to-r from-orange-400 to-purple-500 bg-clip-text text-transparent">
                 {selectedEvent.name}
               </h3>
 
-              <div className="space-y-4 mb-6">
-                <div>
-                  <p className="text-zinc-400 leading-relaxed">
-                    {selectedEvent.details.description}
-                  </p>
-                </div>
+              <p className="text-zinc-300 leading-relaxed mb-8 text-lg">
+                {selectedEvent.details.description}
+              </p>
 
-                <div className="flex items-start gap-3 p-4 bg-zinc-800/50 rounded-xl border border-zinc-700/50">
-                  <Calendar className="w-5 h-5 text-orange-500 mt-0.5 shrink-0" />
+              <div className="grid sm:grid-cols-2 gap-5 mb-10">
+                <div className="flex items-start gap-4 p-5 bg-zinc-800/50 rounded-2xl border border-zinc-700/60">
+                  <Calendar className="w-6 h-6 text-orange-500 mt-1 shrink-0" />
                   <div>
-                    <p className="text-xs text-zinc-500 mb-1 font-semibold uppercase tracking-wide">Timing</p>
-                    <p className="text-sm text-zinc-300">{selectedEvent.details.timing}</p>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-semibold">Timing</div>
+                    <div className="text-zinc-200">{selectedEvent.details.timing}</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-4 bg-zinc-800/50 rounded-xl border border-zinc-700/50">
-                  <MapPin className="w-5 h-5 text-purple-500 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-4 p-5 bg-zinc-800/50 rounded-2xl border border-zinc-700/60">
+                  <MapPin className="w-6 h-6 text-purple-500 mt-1 shrink-0" />
                   <div>
-                    <p className="text-xs text-zinc-500 mb-1 font-semibold uppercase tracking-wide">Location</p>
-                    <p className="text-sm text-zinc-300">{selectedEvent.details.location}</p>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-semibold">Location</div>
+                    <div className="text-zinc-200">{selectedEvent.details.location}</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-4 bg-zinc-800/50 rounded-xl border border-zinc-700/50">
-                  <Trophy className="w-5 h-5 text-orange-500 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-4 p-5 bg-zinc-800/50 rounded-2xl border border-zinc-700/60">
+                  <Trophy className="w-6 h-6 text-orange-500 mt-1 shrink-0" />
                   <div>
-                    <p className="text-xs text-zinc-500 mb-1 font-semibold uppercase tracking-wide">Judging Criteria</p>
-                    <p className="text-sm text-zinc-300">{selectedEvent.details.judgingCriteria}</p>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-semibold">Judging</div>
+                    <div className="text-zinc-200">{selectedEvent.details.judgingCriteria}</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 p-4 bg-zinc-800/50 rounded-xl border border-zinc-700/50">
-                  <Users className="w-5 h-5 text-purple-500 mt-0.5 shrink-0" />
+                <div className="flex items-start gap-4 p-5 bg-zinc-800/50 rounded-2xl border border-zinc-700/60">
+                  <Users className="w-6 h-6 text-purple-500 mt-1 shrink-0" />
                   <div>
-                    <p className="text-xs text-zinc-500 mb-1 font-semibold uppercase tracking-wide">Organizer</p>
-                    <p className="text-sm text-zinc-300">{selectedEvent.details.organizer}</p>
+                    <div className="text-xs text-zinc-500 uppercase tracking-wider mb-1 font-semibold">Organizer</div>
+                    <div className="text-zinc-200">{selectedEvent.details.organizer}</div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex flex-col sm:flex-row gap-4">
                 <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   onClick={() => setSelectedEvent(null)}
-                  className="flex-1 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-xl transition-all duration-300 border border-zinc-700"
+                  className="flex-1 py-4 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold 
+                           rounded-2xl transition-all border border-zinc-700 shadow-lg"
                 >
                   Close
                 </motion.button>
+
                 <Link to="/registration" className="flex-1">
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full px-6 py-3 bg-linear-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/30"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="w-full py-4 bg-linear-to-r from-orange-600 to-purple-700 hover:from-orange-700 
+                             hover:to-purple-800 text-white font-bold rounded-2xl transition-all 
+                             shadow-xl shadow-orange-600/30"
                   >
-                    Register Now
+                    Register Now →
                   </motion.button>
                 </Link>
               </div>
@@ -564,27 +558,6 @@ const Events = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
-        }
-        
-        .line-clamp-1 {
-          display: -webkit-box;
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   );
 };

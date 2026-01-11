@@ -147,7 +147,7 @@ const Contact = () => {
         `}
       </style>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 pt-26">
         {/* Hero Section */}
         <div className="text-center mb-20" style={{ animation: 'slideUp 0.8s ease-out' }}>
           <div className="inline-block mb-4 px-6 py-2 rounded-full" style={{
@@ -155,7 +155,7 @@ const Contact = () => {
             border: '1px solid rgba(255,107,53,0.3)'
           }}>
             <span style={{ color: '#ff6b35', fontSize: '14px', fontWeight: '600', letterSpacing: '2px' }}>
-              CROSSROADS 2025 • November 28-29, 2025
+              CROSSROADS 2026 • February 20-21, 2026
             </span>
           </div>
           

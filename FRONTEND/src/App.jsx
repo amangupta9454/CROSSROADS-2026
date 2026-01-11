@@ -6,9 +6,11 @@ import Schedule from './Pages/Schedule.jsx'
 import About from './Pages/About.jsx'
 import Contact from './Pages/Contact.jsx'
 import Events from './Pages/Events.jsx'
+import Navbar from './Pages/Navbar.jsx'
 const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
