@@ -22,7 +22,7 @@ const Footer = () => {
     { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com' },
     { name: 'YouTube', icon: Youtube, url: 'https://youtube.com' },
     { name: 'Instagram', icon: Instagram, url: 'https://instagram.com' },
-    { name: 'Email', icon: Mail, url: 'mailto:crossroads@hitech.edu' }
+    { name: 'Email', icon: Mail, url: 'mailto:hietcrossroads@gmail.com' }
   ];
 
   const scrollToTop = () => {

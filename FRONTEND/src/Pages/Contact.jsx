@@ -205,7 +205,7 @@ const Contact = () => {
             <p style={{ color: '#9ca3af', fontSize: '0.875rem' }}>Chat with us instantly</p>
           </a>
 
-          <a href="mailto:ag0567688@gmail.com" className="card-hover glow-border" style={{
+          <a href="mailto:hietcrossroads@gmail.com" className="card-hover glow-border" style={{
             background: 'linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.05) 100%)',
             border: '1px solid rgba(255,107,53,0.3)',
             borderRadius: '24px',
