@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 
-import w1 from "../assets/w1.jpg";
-import w2 from "../assets/w2.jpg";
-import w3 from "../assets/w3.jpg";
+import chairman from "../Teams/chairman.jpg"
+import director from "../Teams/director.jpeg";
+import secratory from "../Teams/secratory.jpg";
+import sana from "../Teams/decoration-student-head.jpg"
+import ashif from "../Teams/ashif.JPG"
+import sac from '../Teams/sac.jpg'
+import aman from '../Teams/aman.jpg'
+import himanshu from '../Teams/him.jpg'
+import sahil from "../Teams/sahil-project-student.jpeg"
+import shourya from "../Teams/shourya-cultural-student.jpg"
+
 import w4 from "../assets/w4.jpg";
 import w5 from "../assets/w5.jpg";
 import w6 from "../assets/w6.jpg";
@@ -21,24 +29,24 @@ import sumit from "../assets/sumit.jpg";
 import { FaWhatsapp, FaEnvelope, FaLinkedin, FaCrown, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const placeholderImages = [
-  w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14,
+  chairman, director, secratory, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14,
 ];
 
 const topAuthorities = [
   {
-    name: "Mr. R. P. Gupta",
+    name: "Mr. Anand Prakash",
     role: "Chairman",
     department: "Governing Body",
     image: placeholderImages[0],
   },
   {
-    name: "Dr. A. K. Mishra",
+    name: "Dr. Pankaj Kumar Mishra",
     role: "Director",
     department: "Administration",
     image: placeholderImages[1],
   },
   {
-    name: "Mr. S. K. Verma",
+    name: "Ms. Renu Goel",
     role: "Secretary",
     department: "Administration",
     image: placeholderImages[2],
@@ -108,12 +116,12 @@ const eventLeadership = [
         linkedin: "",
       },
       {
-        name: "Neha Sharma",
+        name: "Sahil Verma ",
         role: "Student Leader",
-        department: "ECE (4th Year)",
-        image: placeholderImages[9],
-        email: "neha@gmail.com",
-        whatsapp: "919800000010",
+        department: "I.T. (4th year)",
+        image: sahil,
+        email: "sahilverma7523@gmail.com",
+        whatsapp: "9999663998",
         linkedin: "",
       },
     ],
@@ -207,12 +215,12 @@ const eventLeadership = [
         linkedin: "",
       },
       {
-        name: "Sneha Patel",
+        name: "Shourya Singh ",
         role: "Student Leader",
-        department: "CSE (3rd Year)",
-        image: placeholderImages[4],
-        email: "sneha@gmail.com",
-        whatsapp: "919800000019",
+        department: "CSE (1st Year)",
+        image: shourya,
+        email: "shourya110singh@gmail.com",
+        whatsapp: "9897023947",
         linkedin: "",
       },
     ],
@@ -520,80 +528,80 @@ const operationalCommittees = [
   {
     name: "Management Team",
     leader: {
-      name: "Riya Agarwal",
-      role: "Committee Head",
-      department: "Management",
-      image: placeholderImages[4],
-      email: "riya@gmail.com",
-      whatsapp: "919800000047",
+      name: "Asif khan",
+      role: "Management Head",
+      department: "B.C.A.",
+      image: ashif,
+      email: "asifkhan876776@gmail.com",
+      whatsapp: "",
       linkedin: "",
     },
   },
   {
     name: "Help Desk",
     leader: {
-      name: "Kunal Verma",
-      role: "Helpdesk Lead",
-      department: "IT Support",
-      image: placeholderImages[5],
-      email: "kunal@gmail.com",
-      whatsapp: "919800000048",
+      name: "Sachchidanand Yadav",
+      role: "Helpdesk Head",
+      department: "B.Tech",
+      image: sac,
+      email: "snsachidanand784@gmail.com",
+      whatsapp: "",
       linkedin: "",
     },
   },
   {
     name: "Decoration Team",
     leader: {
-      name: "Pooja Singh",
+      name: "Saniya Khan",
       role: "Decoration Lead",
-      department: "Design",
-      image: placeholderImages[6],
-      email: "pooja@gmail.com",
-      whatsapp: "919800000049",
+      department: "B.C.A.",
+      image: sana,
+      email: "saifisaniya913@gmail.com",
+      whatsapp: "",
       linkedin: "",
     },
   },
-  {
-    name: "Photography & Media",
-    leader: {
-      name: "Aditya Raj",
-      role: "Media Lead",
-      department: "Media",
-      image: placeholderImages[7],
-      email: "aditya@gmail.com",
-      whatsapp: "919800000050",
-      linkedin: "",
-    },
-  },
+  // {
+  //   name: "Photography & Media",
+  //   leader: {
+  //     name: "Aditya Raj",
+  //     role: "Media Lead",
+  //     department: "Media",
+  //     image: placeholderImages[7],
+  //     email: "aditya@gmail.com",
+  //     whatsapp: "919800000050",
+  //     linkedin: "",
+  //   },
+  // },
 ];
 
 const webTeam = [
   {
     name: "Aman Gupta",
     role: "Lead Web Developer",
-    department: "MERN Stack",
-    image: placeholderImages[8],
-    email: "aman@gmail.com",
-    whatsapp: "919800000051",
-    linkedin: "https://linkedin.com/in/aman",
+    department: "MERN Stack Developer",
+    image: aman,
+    email: "ag0567688@gmail.com",
+    whatsapp: "9560472926",
+    linkedin: "https://www.linkedin.com/in/amangupta9454/",
   },
   {
-    name: "Rahul Jain",
-    role: "Frontend Developer",
-    department: "React & Tailwind",
-    image: placeholderImages[9],
-    email: "rahul@gmail.com",
-    whatsapp: "919800000052",
-    linkedin: "",
+    name: "Himanshu Gupta",
+    role: "Backend Development",
+    department: "MERN Stack Developer",
+    image: himanshu,
+    email: "himanshu561hi@gmail.com",
+    whatsapp: "8090860670",
+    linkedin: "https://www.linkedin.com/in/himanshu561hi/",
   },
   {
-    name: "Sneha Patel",
-    role: "UI/UX Designer",
-    department: "Figma & UI",
-    image: placeholderImages[10],
-    email: "sneha@gmail.com",
-    whatsapp: "919800000053",
-    linkedin: "",
+    name: "Sachchidanand Yadav",
+    role: "Frontend Development",
+    department: "Frontend Development",
+    image: sac,
+    email: "snsachidanand784@gmail.com",
+    whatsapp: "7368878938",
+    linkedin: "https://www.linkedin.com/in/784sachchidanandyadav/",
   },
 ];
 
