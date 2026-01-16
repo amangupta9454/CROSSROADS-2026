@@ -10,8 +10,7 @@ import aman from '../Teams/aman.jpg'
 import himanshu from '../Teams/him.jpg'
 import sahil from "../Teams/sahil-project-student.jpeg"
 import shourya from "../Teams/shourya-cultural-student.jpg"
-
-import w4 from "../assets/w4.jpg";
+import abhishek from "../Teams/abhishek.jpg"
 import w5 from "../assets/w5.jpg";
 import w6 from "../assets/w6.jpg";
 import w7 from "../assets/w7.jpg";
@@ -29,7 +28,7 @@ import sumit from "../assets/sumit.jpg";
 import { FaWhatsapp, FaEnvelope, FaLinkedin, FaCrown, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const placeholderImages = [
-  chairman, director, secratory, w4, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14,
+  chairman, director, secratory, abhishek, w5, w6, w7, w8, w9, w10, w11, w12, w13, w14,
 ];
 
 const topAuthorities = [
@@ -561,18 +560,18 @@ const operationalCommittees = [
       linkedin: "",
     },
   },
-  // {
-  //   name: "Photography & Media",
-  //   leader: {
-  //     name: "Aditya Raj",
-  //     role: "Media Lead",
-  //     department: "Media",
-  //     image: placeholderImages[7],
-  //     email: "aditya@gmail.com",
-  //     whatsapp: "919800000050",
-  //     linkedin: "",
-  //   },
-  // },
+  {
+    name: "Anchoring",
+    leader: {
+      name: "Abhishek Pandey ",
+      role:"Anchoring Lead",
+      department: "B.C.A",
+      image: abhishek,
+      email: "abhishekpandey17072006@gmail.com",
+      whatsapp: "919800000050",
+      linkedin: "",
+    },
+  },
 ];
 
 const webTeam = [

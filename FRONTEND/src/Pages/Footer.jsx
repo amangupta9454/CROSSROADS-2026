@@ -3,25 +3,25 @@ import { Phone, Linkedin, Youtube, Instagram, Mail, ArrowUp, MapPin, Calendar, A
 
 const Footer = () => {
   const studentCoordinators = [
-    { name: 'Rajesh Kumar', phone: '+91 98765 43210' },
-    { name: 'Priya Sharma', phone: '+91 98765 43211' },
-    { name: 'Amit Patel', phone: '+91 98765 43212' },
-    { name: 'Sneha Reddy', phone: '+91 98765 43213' }
+    { name: 'Sachchidanand Yadav', phone: '+91 9450885320' },
+    { name: 'Sahil Verma', phone: '+91 9999663998' },
+    { name: 'Grishika', phone: '+91 8588859661' },
+    { name: 'Harshita Nagar', phone: '+91 8586803432' }
   ];
 
   const events = [
-    'Technical Workshops',
-    'Paper Presentations',
-    'Project Expo',
-    'Coding Competitions',
-    'Robotics Challenge',
-    'Hackathon'
+    'Code Puzzle',
+    'Project Exhibition',
+    'Robo Race',
+    'Cultural Events',
+    'Singing',
+    'Dance Competition'
   ];
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: Linkedin, url: 'https://linkedin.com' },
-    { name: 'YouTube', icon: Youtube, url: 'https://youtube.com' },
-    { name: 'Instagram', icon: Instagram, url: 'https://instagram.com' },
+    { name: 'LinkedIn', icon: Linkedin, url: 'https://www.linkedin.com/company/hi-tech-institute-of-engineering-of-technology/' },
+    { name: 'YouTube', icon: Youtube, url: 'https://www.youtube.com/@hietgroup' },
+    { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/hitech_college_/' },
     { name: 'Email', icon: Mail, url: 'mailto:hietcrossroads@gmail.com' }
   ];
 
