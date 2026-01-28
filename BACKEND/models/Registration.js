@@ -18,6 +18,7 @@ const registrationSchema = new mongoose.Schema({
   year: { type: Number },
   class: { type: Number },
   idProof: { type: String, required: true },
+  exported: { type: Boolean, default: false },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Registration', registrationSchema);
