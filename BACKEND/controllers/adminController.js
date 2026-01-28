@@ -4,8 +4,11 @@ const ExcelJS = require('exceljs');
 
 const login = (req, res) => {
   const { username, password } = req.body;
-  // ← You should change these in production
-  if (username === 'admin' && password === 'password') {
+  
+  if (
+    username === process.env.ADMIN_USERNAME &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
     const token = jwt.sign({ role: 'admin' }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } else {
