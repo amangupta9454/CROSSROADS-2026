@@ -9,19 +9,12 @@ connectDB();
 
 const app = express();
 // Replace this line:
-app.use(cors("*"));
-
-// With this (works perfectly on Vercel):
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // or 'https://hiet-crossroads.online' for stricter
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-auth-token');
-  
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  next();
-});
+app.use(cors({
+  origin: [process.env.FRONTEND_URL], // ← list allowed origins (add more if needed)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'], // add any custom headers your frontend sends
+  credentials: true, // if you ever use cookies/auth with credentials
+}));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
@@ -32,8 +25,5 @@ app.get('/', (req, res) => {
 });
 const PORT = process.env.PORT || 5000;
 console.log("Cloudinary config loaded:");
-  console.log("CLOUD_NAME:", process.env.CLOUDINARY_CLOUD_NAME);
-  console.log("API_KEY:", process.env.CLOUDINARY_API_KEY ? "exists" : "MISSING");
-  console.log("API_SECRET:", process.env.CLOUDINARY_API_SECRET ? "exists" : "MISSING");
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

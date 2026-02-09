@@ -82,7 +82,7 @@ const submitRegistration = async (req, res) => {
 
         const result = await uploadPromise;
         idProofUrl = result.secure_url;
-        console.log(`ID proof uploaded successfully: ${idProofUrl}`);
+        // console.log(`ID proof uploaded successfully: ${idProofUrl}`);
       } catch (uploadError) {
         console.error('Cloudinary upload failed:', uploadError);
         // We do NOT return error — continue registration without ID proof
@@ -109,7 +109,7 @@ const submitRegistration = async (req, res) => {
     if (EventModel) {
       const eventSpecificReg = new EventModel(data);
       await eventSpecificReg.save();
-      console.log(`Saved to event-specific model: ${data.event.value}`);
+      // console.log(`Saved to event-specific model: ${data.event.value}`);
     }
 
     // Send confirmation email to team leader
