@@ -9,12 +9,19 @@ connectDB();
 
 const app = express();
 // Replace this line:
-app.use(cors({
-  origin: [process.env.FRONTEND_URL], // ← list allowed origins (add more if needed)
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-auth-token'], // add any custom headers your frontend sends
-  credentials: true, // if you ever use cookies/auth with credentials
-}));
+app.use(cors("*"));
+
+// With this (works perfectly on Vercel):
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*'); // or 'https://hiet-crossroads.online' for stricter
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-auth-token');
+  
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+  next();
+});
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
