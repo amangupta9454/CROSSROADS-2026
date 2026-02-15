@@ -821,7 +821,7 @@ const courses = ['btech', 'bpharma', 'bca', 'bba', 'bcom', 'bsc', 'polytechnic',
 const branches = ['cse & allied branches', 'it', 'ece', 'me', 'ee', 'civil', 'cse']
   .map(b => ({ value: b, label: b.toUpperCase() }));
 
-const years = [1, 2, 3, 4].map(y => ({ value: y, label: `Year ${y}` }));
+const years = [1, 2, 3, 4].map(y => ({ value: y, label: `${y} Year ` }));
 
 const classes = [9, 10, 11, 12].map(c => ({ value: c, label: `Class ${c}` }));
 
