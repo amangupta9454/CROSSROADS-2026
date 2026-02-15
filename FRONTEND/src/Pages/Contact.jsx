@@ -155,7 +155,7 @@ const Contact = () => {
             border: '1px solid rgba(255,107,53,0.3)'
           }}>
             <span style={{ color: '#ff6b35', fontSize: '14px', fontWeight: '600', letterSpacing: '2px' }}>
-              CROSSROADS 2026 • February 20-21, 2026
+              CROSSROADS 2026 • February 27-28, 2026
             </span>
           </div>
           

@@ -7,7 +7,7 @@ import About from './Pages/About.jsx'
 import Contact from './Pages/Contact.jsx'
 import Events from './Pages/Events.jsx'
 import Navbar from './Pages/Navbar.jsx'
-import Team from './Pages/Team.jsx'
+// import Team from './Pages/Team.jsx'
 import Footer from './Pages/Footer.jsx'
 import AdminLogin from './Components/AdminLogin.jsx'
 import AdminDashboard from './Components/AdminDashboard.jsx'
@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/contact" element={<><Contact /><Footer /></>} />
         <Route path="/events" element={<><Events /><Footer /></>} />
         <Route path="/schedule" element={<><Schedule /><Footer /></>} />
-        <Route path="/team" element={<><Team /><Footer /></>} />
+        {/* <Route path="/team" element={<><Team /><Footer /></>} /> */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/event-registration" element={<><RegistrationForm /><Footer /></>} />

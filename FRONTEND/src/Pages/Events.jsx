@@ -37,10 +37,10 @@ const events = [
     category: 'Technical',
     details: {
       description: 'A coding quiz to challenge logical and programming skills.',
-      timing: 'Feb 20 2026, 9:00 AM - 12:00 PM',
+      timing: 'Feb 27 2026, 9:00 AM - 12:00 PM',
       location: 'Block 1 Lab F',
       judgingCriteria: 'Innovation, Functionality, Design, Presentation',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -50,10 +50,10 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Display and present innovative student projects across domains.',
-      timing: 'Feb 20, 2026, 10:00 AM  February 21, 2026, 4:00 PM',
+      timing: 'Feb 20, 2026, 10:00 AM  February 28, 2026, 4:00 PM',
       location: 'Amphitheatre Hall',
       judgingCriteria: 'Originality, Impact, Technical Execution',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -63,10 +63,10 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Compete with your robots in high-speed challenges.',
-      timing: 'Feb 20, 2026, 1:00 PM - 5:00 PM',
+      timing: 'Feb 27, 2026, 1:00 PM - 5:00 PM',
       location: 'Hi Tech Ground',
       judgingCriteria: 'Speed, Control, Design, Navigation',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -76,10 +76,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Showcase of traditional and contemporary performances.',
-      timing: 'Feb 20, 2026, 9:00 AM  February 21, 2026, 6:00 PM',
+      timing: 'Feb 27, 2026, 9:00 AM  February 28, 2026, 6:00 PM',
       location: 'Amphitheatre Stage',
       judgingCriteria: 'Creativity, Presentation, Crowd Engagement',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -89,10 +89,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Create beautiful rangoli designs using vibrant colors.',
-      timing: 'Feb 20, 2026, 10:00 AM - 4:00 PM',
+      timing: 'Feb 27, 2026, 10:00 AM - 4:00 PM',
       location: 'Block 2 Courtyard',
       judgingCriteria: 'Creativity, Neatness, Color Usage, Theme Representation',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -102,10 +102,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Prepare delicious dishes without using fire or heat.',
-      timing: 'Feb 20, 2026, 9:00 AM - 5:00 PM',
+      timing: 'Feb 27, 2026, 9:00 AM - 5:00 PM',
       location: 'Block 3 Cafeteria',
       judgingCriteria: 'Taste, Presentation, Innovation, Hygiene',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -115,10 +115,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Perform impactful street plays on social issues.',
-      timing: 'Feb 20-21, 2026, 10:00 AM',
+      timing: 'Feb 27-28, 2026, 10:00 AM',
       location: ' Amphitheatre Lawn',
       judgingCriteria: 'Message Clarity, Acting, Engagement, Theme Relevance',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -128,10 +128,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Showcase your vocal talent across genres and languages.',
-      timing: 'Feb 20-21, 2026, 11:00 AM - 3:00 PM',
+      timing: 'Feb 27-28, 2026, 11:00 AM - 3:00 PM',
       location: 'Amphitheatre Stage',
       judgingCriteria: 'Vocal Quality, Pitch, Expression, Stage Presence',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -141,10 +141,10 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Present technical concepts and innovations through posters.',
-      timing: 'Feb 20, 2026, 9:00 AM - 1:00 PM',
+      timing: 'Feb 27, 2026, 9:00 AM - 1:00 PM',
       location: 'Block 1 Corridor',
       judgingCriteria: 'Content Clarity, Design, Innovation, Presentation',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -154,10 +154,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Dance teams from various colleges compete with style and energy.',
-      timing: 'Feb 20-21, 2026, 2:00 PM - 6:00 PM',
+      timing: 'Feb 27-28, 2026, 2:00 PM - 6:00 PM',
       location: 'Amphitheatre Stage',
       judgingCriteria: 'Choreography, Synchronization, Expression, Costume',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -167,10 +167,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Bands compete by performing electrifying live music sets.',
-      timing: 'Feb 21, 2026, 6:30 PM - 9:30 PM',
+      timing: 'Feb 28, 2026, 6:30 PM - 9:30 PM',
       location: 'Amphitheatre Stage',
       judgingCriteria: 'Music Quality, Stage Presence, Originality, Coordination',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -180,10 +180,10 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Create a short film showcasing storytelling, direction, and editing skills.',
-      timing: 'Feb 20, 2026, 10:00 AM - 4:00 PM',
+      timing: 'Feb 27, 2026, 10:00 AM - 4:00 PM',
       location: 'Block 3 Corridor',
       judgingCriteria: 'Storytelling, Creativity, Technical Execution, Impact',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -193,10 +193,10 @@ const events = [
     category: 'Cultural',
     details: {
       description: 'Create fun and creative advertisements for fictional products.',
-      timing: 'Feb 20, 2026, 11:00 AM - 3:00 PM',
+      timing: 'Feb 27, 2026, 11:00 AM - 3:00 PM',
       location: 'Seminar Hall',
       judgingCriteria: 'Creativity, Humor, Messaging, Presentation',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
   {
@@ -206,10 +206,10 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Solve clues and find hidden items in a campus-wide adventure.',
-      timing: 'Feb 20, 2026, 9:00 AM - 1:00 PM',
+      timing: 'Feb 27, 2026, 9:00 AM - 1:00 PM',
       location: 'College Grounds',
       judgingCriteria: 'Teamwork, Time Management, Problem-Solving',
-      organizer: 'Tech Fusion',
+      organizer: 'HIET Ghaziabad',
     },
   },
 ];
@@ -346,7 +346,7 @@ const Events = () => {
   const [timeLeft, setTimeLeft] = useState({});
 
   useEffect(() => {
-    const targetDate = new Date('2026-02-20T00:00:00+05:30').getTime(); // IST timezone
+    const targetDate = new Date('2026-02-27T00:00:00+05:30').getTime(); // IST timezone
 
     const updateTimer = () => {
       const now = new Date().getTime();

@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const eventDate = new Date('2026-02-20T00:00:00').getTime();
+      const eventDate = new Date('2026-02-27T00:00:00').getTime();
       const now = new Date().getTime();
       const difference = eventDate - now;
 
@@ -146,7 +146,7 @@ const Home = () => {
   },
   {
     question: 'When and where will CROSSROADS 2026 be held?',
-    answer: 'CROSSROADS 2026 will take place on February 20-21 2026, at our college campus. Detailed venue information and event schedules will be shared closer to the date.'
+    answer: 'CROSSROADS 2026 will take place on February 27-28 2026, at our college campus. Detailed venue information and event schedules will be shared closer to the date.'
   },
   {
     question: 'Are there any prizes for winners?',
@@ -204,7 +204,7 @@ const Home = () => {
           whileHover={{ scale: 1.05 }}
         >
           <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span className="font-semibold text-sm sm:text-base md:text-lg">Februrary 20 2026</span>
+          <span className="font-semibold text-sm sm:text-base md:text-lg">Februrary 27 2026</span>
           <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
         </motion.div>
 

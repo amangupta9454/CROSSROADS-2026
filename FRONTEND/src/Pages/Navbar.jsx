@@ -11,7 +11,7 @@ const navItems = [
   { name: "Events", path: "/events" },
   { name: "Schedule", path: "/schedule" },
   { name: "Contact", path: "/contact" },
-  {name: "Our Team", path: "/team" }
+  // {name: "Our Team", path: "/team" }
 ];
 
 // Magnetic effect hook
