@@ -5,7 +5,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const registrationRoutes = require('./routes/registrationRoutes');
 const adminRoutes = require('./routes/adminRoutes');
- await connectDB();
+connectDB();
 
 const app = express();
 // Replace this line:
