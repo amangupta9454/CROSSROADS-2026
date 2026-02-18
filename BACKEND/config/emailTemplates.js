@@ -154,10 +154,10 @@ const getRegistrationEmail = (data, uniqueId, isLeader = true, name) => {
   `;
 };
 const getWhatsappLink = (category) => {
-  if (category === 'technical') return 'https://chat.whatsapp.com/technical-link';
-  if (category === 'cultural') return 'https://chat.whatsapp.com/cultural-link';
-  if (category === 'fun') return 'https://chat.whatsapp.com/fun-link';
-  return 'https://chat.whatsapp.com/general-link';
+  if (category === 'technical') return 'https://chat.whatsapp.com/KTyS5UeLX1q3wVX7omGqcg';
+  if (category === 'cultural') return 'https://chat.whatsapp.com/KTyS5UeLX1q3wVX7omGqcg';
+  if (category === 'fun') return 'https://chat.whatsapp.com/KTyS5UeLX1q3wVX7omGqcg';
+  return 'https://chat.whatsapp.com/KTyS5UeLX1q3wVX7omGqcg';
 };
 
 module.exports = { getRegistrationEmail };
