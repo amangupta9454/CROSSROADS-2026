@@ -50,7 +50,7 @@ const events = [
     category: 'Technical',
     details: {
       description: 'Display and present innovative student projects across domains.',
-      timing: 'Feb 20, 2026, 10:00 AM  February 28, 2026, 4:00 PM',
+      timing: 'Feb 27, 2026, 10:00 AM  February 28, 2026, 4:00 PM',
       location: 'Amphitheatre Hall',
       judgingCriteria: 'Originality, Impact, Technical Execution',
       organizer: 'HIET Ghaziabad',
