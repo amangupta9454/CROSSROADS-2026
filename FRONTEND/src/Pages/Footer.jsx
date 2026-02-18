@@ -4,18 +4,24 @@ import { Phone, Linkedin, Youtube, Instagram, Mail, ArrowUp, MapPin, Calendar, A
 const Footer = () => {
   const studentCoordinators = [
     { name: 'Sachchidanand Yadav', phone: '+91 9450885320' },
+    { name: 'Aman Gupta', phone: '+91 9560472926' },
     { name: 'Sahil Verma', phone: '+91 9999663998' },
-    { name: 'Grishika', phone: '+91 8588859661' },
-    { name: 'Harshita Nagar', phone: '+91 8586803432' }
+    { name: 'Aman Singh Bisht ', phone: '+91 8178782584' },
+    { name: 'Arman Parwani', phone: '+91 8510898787' },
+    {name: 'Swapnil kumar', phone: '+91 6201644233' }
   ];
 
   const events = [
-    'Code Puzzle',
-    'Project Exhibition',
-    'Robo Race',
-    'Cultural Events',
-    'Singing',
-    'Dance Competition'
+    "Code Puzzle",
+  "Project Exhibition",
+  "Robo Race",
+  "Technical Poster",
+  "Cultural Events",
+  "Rangoli Competition",
+  "Food Without Fire",
+  "Nukkad Natak",
+  "Singing",
+  "Dance Competition",
   ];
 
   const socialLinks = [
