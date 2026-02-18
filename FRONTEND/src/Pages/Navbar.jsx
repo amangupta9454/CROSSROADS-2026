@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X, Sparkles } from "lucide-react";
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
-import logo from "../assets/logo.png";
 import hiet from '/hiet.png';
+import sunstone from '/sunstone.jpg';
 
 const navItems = [
   { name: "Home", path: "/" },
@@ -12,7 +11,6 @@ const navItems = [
   { name: "Events", path: "/events" },
   { name: "Schedule", path: "/schedule" },
   { name: "Contact", path: "/contact" },
-  // {name: "Our Team", path: "/team" }
 ];
 
 // Magnetic effect hook
@@ -81,7 +79,7 @@ const AnimatedNavLink = ({ item, index }) => {
             style={{ x: xSpring, y: ySpring }}
             onMouseMove={handleMouse}
             onMouseLeave={reset}
-            className="relative px-5 py-2.5"
+            className="relative px-4 py-2.5 lg:px-5"
           >
             <motion.div
               className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -130,88 +128,84 @@ const AnimatedNavLink = ({ item, index }) => {
   );
 };
 
-const AnimatedLogo = () => {
+const AnimatedEventName = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="flex items-center gap-4 sm:gap-6 group">
-      {/* Main event logo + name */}
-      <NavLink
-        to="/"
-        className="flex items-center gap-3"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <motion.div className="relative" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
-          <motion.div
-            className="absolute -inset-2 rounded-2xl blur-xl"
-            animate={{
-              background: isHovered
-                ? [
-                    "radial-gradient(circle, hsla(24, 95%, 53%, 0.6), transparent)",
-                    "radial-gradient(circle, hsla(330, 80%, 60%, 0.6), transparent)",
-                    "radial-gradient(circle, hsla(24, 95%, 53%, 0.6), transparent)",
-                  ]
-                : "radial-gradient(circle, hsla(24, 95%, 53%, 0.4), transparent)",
-              scale: isHovered ? [1, 1.2, 1] : 1,
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+    <NavLink
+      to="/"
+      className="flex items-center gap-2.5 sm:gap-3 group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <motion.div className="relative hidden xs:block" whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+        <motion.div
+          className="absolute -inset-2 rounded-2xl blur-xl"
+          animate={{
+            background: isHovered
+              ? [
+                  "radial-gradient(circle, hsla(24, 95%, 53%, 0.6), transparent)",
+                  "radial-gradient(circle, hsla(330, 80%, 60%, 0.6), transparent)",
+                  "radial-gradient(circle, hsla(24, 95%, 53%, 0.6), transparent)",
+                ]
+              : "radial-gradient(circle, hsla(24, 95%, 53%, 0.4), transparent)",
+            scale: isHovered ? [1, 1.2, 1] : 1,
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute -inset-3 rounded-full border border-orange-500/30"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          style={{ borderStyle: "dashed", borderWidth: "1px" }}
+        />
+      </motion.div>
 
-          <motion.div
-            className="absolute -inset-3 rounded-full border border-orange-500/30"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            style={{ borderStyle: "dashed", borderWidth: "1px" }}
-          />
+      <div className="flex flex-col">
+        <motion.span
+          className="text-base sm:text-lg md:text-xl font-black tracking-tight bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent"
+          animate={isHovered ? { backgroundPosition: ["0%", "100%", "0%"] } : {}}
+          transition={{ duration: 1.5 }}
+          style={{ backgroundSize: "200%" }}
+        >
+          CROSSROADS
+        </motion.span>
 
-          <motion.img
-            src={logo}
-            alt="CROSSROADS"
-            className="h-10 sm:h-12 relative z-10 object-contain drop-shadow-[0_0_15px_rgba(249,115,22,0.5)]"
-            animate={isHovered ? { rotate: [0, -5, 5, 0] } : {}}
-            transition={{ duration: 0.5 }}
-          />
-        </motion.div>
-
-        <div className="hidden sm:flex flex-col">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <motion.span
-            className="text-lg sm:text-xl font-black tracking-tight bg-gradient-to-r from-white via-orange-100 to-white bg-clip-text text-transparent"
-            animate={isHovered ? { backgroundPosition: ["0%", "100%", "0%"] } : {}}
-            transition={{ duration: 1.5 }}
-            style={{ backgroundSize: "200%" }}
+            className="text-[10px] sm:text-xs font-bold bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent"
+            animate={{ opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            CROSSROADS
+            2026
           </motion.span>
-
-          <div className="flex items-center gap-2">
-            <motion.span
-              className="text-xs font-bold bg-gradient-to-r from-orange-400 to-pink-500 bg-clip-text text-transparent"
-              animate={{ opacity: [0.7, 1, 0.7] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              2026
-            </motion.span>
-            <motion.div
-              className="h-1 w-1 rounded-full bg-orange-500"
-              animate={{ scale: [1, 1.5, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            />
-          </div>
+          <motion.div
+            className="h-1 w-1 rounded-full bg-orange-500"
+            animate={{ scale: [1, 1.5, 1] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          />
         </div>
-      </NavLink>
+      </div>
+    </NavLink>
+  );
+};
 
-      {/* College logo – clickable to external site */}
-     <a
+const PartnerLogos = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="flex items-center gap-3 sm:gap-4 md:gap-6"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <a
         href="https://hiet.org/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-center"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         <motion.div
-          className="p-1.5 sm:p-2 bg-white rounded-xl shadow-md shadow-black/20 border border-gray-200/80"
+          className="p-1 sm:p-1.5 bg-white rounded-lg sm:rounded-xl shadow-md shadow-black/20 border border-gray-200/80"
           whileHover={{ scale: 1.08, y: -2 }}
           whileTap={{ scale: 0.96 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -219,8 +213,28 @@ const AnimatedLogo = () => {
           <motion.img
             src={hiet}
             alt="HIET Logo"
-            className="h-9 sm:h-10 w-auto object-contain"
-            // Optional: slight hover glow if you want
+            className="h-7 sm:h-8 md:h-9 max-h-9 w-auto max-w-[110px] sm:max-w-[130px] object-contain"
+            animate={isHovered ? { filter: "brightness(1.08)" } : { filter: "brightness(1)" }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
+      </a>
+
+      <a
+        href="https://sunstone.in/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <motion.div
+          className="p-1 sm:p-1.5 bg-white rounded-lg sm:rounded-xl shadow-md shadow-black/20 border border-gray-200/80"
+          whileHover={{ scale: 1.08, y: -2 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+          <motion.img
+            src={sunstone}
+            alt="Sunstone Logo"
+            className="h-7 sm:h-8 md:h-9 max-h-9 w-auto max-w-[110px] sm:max-w-[130px] object-contain"
             animate={isHovered ? { filter: "brightness(1.08)" } : { filter: "brightness(1)" }}
             transition={{ duration: 0.3 }}
           />
@@ -240,7 +254,7 @@ const RegisterButton = () => {
         onMouseLeave={() => setIsHovered(false)}
         whileHover={{ scale: 1.04, y: -2 }}
         whileTap={{ scale: 0.97 }}
-        className="relative px-6 py-3 rounded-xl overflow-hidden group bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600 shadow-lg shadow-orange-500/30"
+        className="relative px-5 py-2.5 md:px-6 md:py-3 rounded-xl overflow-hidden group bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600 shadow-lg shadow-orange-500/30 text-sm md:text-base"
       >
         <motion.div
           className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
@@ -248,7 +262,7 @@ const RegisterButton = () => {
           transition={{ duration: 0.8, ease: "easeInOut" }}
         />
 
-        <span className="relative z-10 text-sm font-bold text-white flex items-center gap-2">
+        <span className="relative z-10 font-bold text-white flex items-center gap-1.5 md:gap-2">
           <Sparkles className="w-4 h-4" />
           Register Now
         </span>
@@ -264,7 +278,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -272,13 +286,12 @@ export default function Navbar() {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <>
-      {/* Animated top glow bar */}
       <div className="fixed top-0 left-0 right-0 h-1.5 z-[999] overflow-hidden">
         <motion.div
           className="absolute inset-0"
@@ -291,12 +304,11 @@ export default function Navbar() {
         />
       </div>
 
-      {/* Main Navbar */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-2 left-0 right-0 z-[100] px-4 sm:px-6 lg:px-8"
+        className="fixed top-2 left-0 right-0 z-[100] px-3 xs:px-4 sm:px-6 lg:px-8"
       >
         <motion.div
           className="max-w-7xl mx-auto rounded-2xl backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl"
@@ -318,35 +330,34 @@ export default function Navbar() {
 
           <FloatingParticles />
 
-          <div className="relative flex items-center justify-between px-5 sm:px-8 h-20">
-            <AnimatedLogo />
+          <div className="relative flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 sm:h-20">
+            <div className="flex items-center gap-4 sm:gap-6 lg:gap-10">
+              <AnimatedEventName />
+              <PartnerLogos />
+            </div>
 
-            {/* Desktop Navigation */}
             <motion.ul className="hidden md:flex items-center gap-1 lg:gap-2">
               {navItems.map((item, index) => (
                 <AnimatedNavLink key={item.name} item={item} index={index} />
               ))}
             </motion.ul>
 
-            {/* Right section */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 sm:gap-4">
               <RegisterButton />
 
-              {/* Mobile menu toggle */}
               <motion.button
                 whileHover={{ scale: 1.12 }}
                 whileTap={{ scale: 0.92 }}
                 onClick={() => setOpen(true)}
-                className="md:hidden relative p-3 rounded-xl bg-gradient-to-br from-orange-900/30 to-pink-900/20 backdrop-blur-sm border border-orange-500/20"
+                className="md:hidden p-2.5 sm:p-3 rounded-xl bg-gradient-to-br from-orange-900/30 to-pink-900/20 backdrop-blur-sm border border-orange-500/20"
               >
-                <Menu size={26} className="text-orange-400" strokeWidth={2.8} />
+                <Menu size={24} className="text-orange-400" strokeWidth={2.8} />
               </motion.button>
             </div>
           </div>
         </motion.div>
       </motion.header>
 
-      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {open && (
           <>
@@ -363,19 +374,17 @@ export default function Navbar() {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ type: "spring", damping: 28, stiffness: 220 }}
-              className="fixed top-0 right-0 z-[999] h-screen w-[85vw] max-w-sm backdrop-blur-2xl overflow-y-auto"
+              className="fixed top-0 right-0 z-[999] h-screen w-[80vw] max-w-xs sm:max-w-sm backdrop-blur-2xl overflow-y-auto"
               style={{
                 background: "linear-gradient(135deg, rgba(15,23,42,0.96) 0%, rgba(10,16,32,0.96) 100%)",
               }}
             >
-              {/* Left glowing edge */}
               <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-transparent via-orange-500/40 to-transparent" />
 
-              {/* Header */}
-              <div className="relative flex items-center justify-between px-6 py-7 border-b border-white/8">
+              <div className="relative flex items-center justify-between px-5 sm:px-6 py-6 sm:py-7 border-b border-white/8">
                 <div className="flex items-center gap-3">
                   <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-orange-500 to-pink-600 animate-pulse" />
-                  <h2 className="text-2xl font-black bg-gradient-to-r from-orange-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
+                  <h2 className="text-xl sm:text-2xl font-black bg-gradient-to-r from-orange-300 via-pink-300 to-purple-300 bg-clip-text text-transparent">
                     Menu
                   </h2>
                 </div>
@@ -384,21 +393,20 @@ export default function Navbar() {
                   whileHover={{ scale: 1.15, rotate: 90 }}
                   whileTap={{ scale: 0.88 }}
                   onClick={() => setOpen(false)}
-                  className="p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
+                  className="p-2.5 sm:p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
                 >
-                  <X size={26} className="text-orange-400" />
+                  <X size={24} className="text-orange-400" />
                 </motion.button>
               </div>
 
-              {/* Nav Items */}
               <motion.div
-                className="px-5 py-10 space-y-3"
+                className="px-4 sm:px-5 py-8 sm:py-10 space-y-2 sm:space-y-3"
                 initial="closed"
                 animate="open"
                 exit="closed"
                 variants={{
-                  open: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
-                  closed: { transition: { staggerChildren: 0.04 } },
+                  open: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } },
+                  closed: { transition: { staggerChildren: 0.03 } },
                 }}
               >
                 {navItems.map((item, index) => (
@@ -406,17 +414,17 @@ export default function Navbar() {
                     key={item.name}
                     variants={{
                       open: { x: 0, opacity: 1, scale: 1 },
-                      closed: { x: 40, opacity: 0, scale: 0.95 },
+                      closed: { x: 30, opacity: 0, scale: 0.96 },
                     }}
                   >
                     <NavLink
                       to={item.path}
                       onClick={() => setOpen(false)}
                       className={({ isActive }) => `
-                        group relative flex items-center px-6 py-5 rounded-2xl text-lg font-medium
+                        group relative flex items-center px-5 sm:px-6 py-4 sm:py-5 rounded-2xl text-base sm:text-lg font-medium
                         transition-all duration-300
-                        ${isActive 
-                          ? 'bg-gradient-to-r from-orange-600/20 to-pink-600/20 text-white border border-orange-500/30' 
+                        ${isActive
+                          ? 'bg-gradient-to-r from-orange-600/20 to-pink-600/20 text-white border border-orange-500/30'
                           : 'text-slate-300 hover:text-white hover:bg-white/5'
                         }
                       `}
@@ -430,21 +438,20 @@ export default function Navbar() {
                 ))}
               </motion.div>
 
-              {/* Bottom CTA */}
               <motion.div
-                className="p-6 border-t border-white/10 mt-auto"
+                className="p-5 sm:p-6 border-t border-white/10 mt-auto"
                 initial={{ y: 40, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.4 }}
               >
                 <NavLink to="/event-registration" onClick={() => setOpen(false)}>
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className="w-full py-5 px-8 rounded-2xl bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600 text-white font-bold text-lg shadow-lg shadow-orange-500/30 relative overflow-hidden group"
+                    className="w-full py-4 sm:py-5 px-6 sm:px-8 rounded-2xl bg-gradient-to-r from-orange-600 via-pink-600 to-purple-600 text-white font-bold text-base sm:text-lg shadow-lg shadow-orange-500/30 relative overflow-hidden group"
                   >
-                    <span className="relative z-10 flex items-center justify-center gap-3">
-                      <Sparkles className="w-6 h-6" />
+                    <span className="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+                      <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />
                       Register Now
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />

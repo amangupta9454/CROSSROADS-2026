@@ -754,16 +754,16 @@ const events = [
   { value: 'code-puzzle', label: 'Code Puzzle', icon: '💻', category: 'technical' },
   { value: 'project-exhibition', label: 'Project Exhibition', icon: '🔬', category: 'technical' },
   { value: 'robo-race', label: 'Robo Race', icon: '🤖', category: 'technical' },
-  { value: 'technical-poster', label: 'Technical Poster', icon: '📊', category: 'technical' },
+  { value: 'technical-poster', label: 'Technical Poster Presentation', icon: '📊', category: 'technical' },
   { value: 'cultural-events', label: 'Cultural Events', icon: '🎭', category: 'cultural' },
   { value: 'rangoli-competition', label: 'Rangoli Competition', icon: '🎨', category: 'cultural' },
   { value: 'food-without-fire', label: 'Food Without Fire', icon: '🍳', category: 'cultural' },
-  { value: 'nukkad-natak', label: 'Nukkad Natak', icon: '🎪', category: 'cultural' },
-  { value: 'singing', label: 'Singing', icon: '🎤', category: 'cultural' },
+  // { value: 'nukkad-natak', label: 'Nukkad Natak', icon: '🎪', category: 'cultural' },
+  // { value: 'singing', label: 'Singing', icon: '🎤', category: 'cultural' },
   { value: 'dance-competition', label: 'Dance Competition', icon: '💃', category: 'cultural' },
   { value: 'rock-band', label: 'Rock Band', icon: '🎸', category: 'cultural' },
-  { value: 'short-film-maker', label: 'Short Film Maker', icon: '🎬', category: 'cultural' },
-  { value: 'ad-mad-show', label: 'Ad Mad Show', icon: '📺', category: 'cultural' },
+  { value: 'short-film-maker', label: 'Reel Making', icon: '🎬', category: 'cultural' },
+  // { value: 'ad-mad-show', label: 'Ad Mad Show', icon: '📺', category: 'cultural' },
   { value: 'treasure-hunt', label: 'Treasure Hunt', icon: '🗺️', category: 'fun' },
 ];
 
@@ -818,7 +818,7 @@ const schools = [
 const courses = ['btech', 'bpharma', 'bca', 'bba', 'bcom', 'bsc', 'polytechnic', 'mtech', 'mpharma', 'mca', 'mba', 'mcom', 'msc', 'bed']
   .map(c => ({ value: c, label: c.toUpperCase() }));
 
-const branches = ['cse & allied branches', 'it', 'ece', 'me', 'ee', 'civil', 'cse']
+const branches = ['cse & allied branches', 'it', 'ece', 'me', 'ee', 'civil', 'cse', 'Others']
   .map(b => ({ value: b, label: b.toUpperCase() }));
 
 const years = [1, 2, 3, 4].map(y => {
