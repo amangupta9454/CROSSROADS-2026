@@ -135,6 +135,14 @@ const registerEventTeam = async (req, res) => {
               </table>
             </div>
 
+             <div style="margin:45px 0; padding:35px 30px; background: linear-gradient(135deg, #065f46, #047857); border-radius:20px; text-align:center;">
+                <h3 style="margin:0 0 20px; color:white;">📱 Join the Official WhatsApp Group</h3>
+                <a href="https://chat.whatsapp.com/KTyS5UeLX1q3wVX7omGqcg"
+                   style="display:inline-block; padding:16px 40px; background:#25D366; color:white; text-decoration:none; border-radius:50px; font-size:18px; font-weight:bold;">
+                  Join Now →
+                </a>
+              </div>
+
             <div style="margin:30px 0; padding:20px; background:#1e293b; border-left:5px solid #0ea5e9; border-radius:8px;">
               <h3 style="margin-top:0; color:#0ea5e9;">Next Steps</h3>
               <ul style="padding-left:20px; line-height:1.8;">
