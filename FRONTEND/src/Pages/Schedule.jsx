@@ -88,51 +88,27 @@ const schedule = {
       duration: "2.5 hrs",
       venue: "Entire Campus"
     },
+   
+    
     { 
-      time: "11:00 AM", 
-      title: "Nukkad Natak (Street Play)", 
-      description: "Perform powerful street plays addressing social issues with impactful storytelling and drama.",
-      category: "entertainment",
-      icon: Theater,
-      duration: "2 hrs",
-      venue: "Central Quad"
-    },
-    { 
-      time: "1:00 PM", 
-      title: "Singing Competition", 
-      description: "Mesmerize the audience with your melodious voice in solo and duet singing performances.",
-      category: "entertainment",
-      icon: Mic,
-      duration: "2 hrs",
-      venue: "Music Hall"
-    },
-    { 
-      time: "2:00 PM", 
+      time: "10:00 AM", 
       title: "Dance Competition", 
       description: "Showcase your dancing prowess with breathtaking choreography in solo, duet, and group categories.",
       category: "entertainment",
       icon: Music,
       duration: "2.5 hrs",
-      venue: "Main Stage"
+      venue: "Amphitheater"
     },
     { 
-      time: "3:00 PM", 
+      time: "10:00 AM", 
       title: "Short Film Maker", 
       description: "Screen your creative short films and compete for best direction, story, and cinematography awards.",
       category: "cultural",
       icon: Film,
       duration: "2 hrs",
-      venue: "Mini Auditorium"
+      venue: "Block 1"
     },
-    { 
-      time: "4:00 PM", 
-      title: "Ad-Mad Show", 
-      description: "Create hilarious and innovative advertisements for imaginary products with creative marketing pitches.",
-      category: "entertainment",
-      icon: Megaphone,
-      duration: "1.5 hrs",
-      venue: "Seminar Hall"
-    },
+    
     { 
       time: "5:30 PM", 
       title: "Grand Prize Distribution", 
