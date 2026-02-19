@@ -50,7 +50,7 @@ const registerEventTeam = async (req, res) => {
     );
 
     const serial = String(counter.seq).padStart(3, '0');
-    const teamId = `EV/${currentYear}/${serial}`;
+    const teamId = `HIET/CR/${currentYear}/${serial}`;
 
     // Save team
     const newTeam = await EventTeam.create({
@@ -84,7 +84,7 @@ const registerEventTeam = async (req, res) => {
 
     // Send confirmation email
     const mailOptions = {
-      from: `"CODE-A-NOVA Events" <${process.env.EMAIL_USER}>`,
+      from: `"CROSSROADS 2026 Events" <${process.env.EMAIL_USER}>`,
       to: leaderEmail,
       subject: `Team Registration Confirmed – ${teamName} (${teamId})`,
       html: `
@@ -140,14 +140,14 @@ const registerEventTeam = async (req, res) => {
               <ul style="padding-left:20px; line-height:1.8;">
                 <li>Save your <strong>Team ID (${teamId})</strong> — it's your unique reference</li>
                 <li>Check spam/junk if you don't see further updates</li>
-                <li>Reach out to <strong>codeanova26@gmail.com</strong> for any questions</li>
+                <li>Reach out to <strong>crossroads20255@gmail.com</strong> for any questions</li>
               </ul>
             </div>
 
             <div style="text-align:center; margin:40px 0;">
-              <a href="https://code-a-nova.online/"
+              <a href="https://hiet-crossroads.online/"
                  style="display:inline-block; background:linear-gradient(135deg,#0ea5e9,#6366f1); color:white; padding:16px 36px; border-radius:999px; text-decoration:none; font-weight:600; font-size:17px; box-shadow:0 10px 25px rgba(14,165,233,0.3);">
-                Visit Code-A-Nova Website
+                Visit CROSSROADS 2026 Website
               </a>
             </div>
 
@@ -155,8 +155,8 @@ const registerEventTeam = async (req, res) => {
 
             <p style="text-align:center; color:#94a3b8; font-size:14px;">
               Warm Regards,<br>
-              <strong style="color:#0ea5e9;">CODE-A-NOVA Team</strong><br>
-              <a href="mailto:codeanova26@gmail.com" style="color:#60a5fa;">codeanova26@gmail.com</a>
+              <strong style="color:#0ea5e9;">CROSSROADS 2026 Team</strong><br>
+              <a href="mailto:crossroads20255@gmail.com" style="color:#60a5fa;">crossroads20255@gmail.com</a>
             </p>
           </div>
         </div>

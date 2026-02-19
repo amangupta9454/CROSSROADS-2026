@@ -160,10 +160,10 @@ const EventRegistration = () => {
   const teamSizeNum = parseInt(formData.teamSize, 10);
 
   return (
-    <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden pt-28">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-teal-950/20 opacity-60"></div>
 
-      <div className={`max-w-5xl mx-auto relative z-10 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+      <div className={`max-w-5xl mx-auto relative z-10 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12 '}`}>
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
             <span className="text-teal-400">Team</span> Event Registration
