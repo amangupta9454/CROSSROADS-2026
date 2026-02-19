@@ -1,27 +1,81 @@
-require('dotenv').config();
+// index.js   (main entry point — for Vercel serverless or local Node.js)
+
 const express = require('express');
-const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('./config/db');
-const registrationRoutes = require('./routes/registrationRoutes');
-const adminRoutes = require('./routes/adminRoutes');
-connectDB();
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const eventRoutes = require('./routes/event');  // ← your only route right now
+
+// Cached DB connection (important for Vercel/serverless — avoids reconnecting every request)
+let cachedDb = null;
+
+async function connectToDatabase() {
+  if (cachedDb) return cachedDb;
+
+  try {
+    const db = await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      maxPoolSize: 10,
+      minPoolSize: 2,
+      socketTimeoutMS: 20000,
+      family: 4,                 // Prefer IPv4
+    });
+
+    cachedDb = db;
+    console.log('MongoDB connected (cached)');
+    return db;
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    throw err;
+  }
+}
 
 const app = express();
-// Replace this line:
-app.use(cors("*"));
 
-// With this (works perfectly on Vercel):
-
+// Middleware
+app.use(cors({ origin: '*' }));  // ← change to specific origins in production
 app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/registrations', registrationRoutes);
-app.use('/api/admin', adminRoutes);
-app.get('/', (req, res) => {
-  res.send('API is running...');
+// Lazy DB connection per request
+app.use(async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (err) {
+    console.error('DB connection failed:', err);
+    return res.status(503).json({ 
+      message: 'Database unavailable — try again later' 
+    });
+  }
 });
-const PORT = process.env.PORT || 5000;
-console.log("Cloudinary config loaded:");
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// ── Only event routes right now ──
+app.use('/api', eventRoutes);
+
+// Simple root / health check
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'Event Registration API is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// 404 handler for unknown routes
+app.use((req, res) => {
+  res.status(404).json({ message: 'Not found' });
+});
+
+// For local development (Vercel ignores listen)
+const PORT = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;

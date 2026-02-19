@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import RegistrationForm from './Components/RegistrationForm.jsx'
+import EventRegistration from './Components/EventRegistration.jsx'
 import Home from './Pages/Home.jsx'
 import Schedule from './Pages/Schedule.jsx'
 import About from './Pages/About.jsx'
@@ -25,7 +25,7 @@ const App = () => {
         {/* <Route path="/team" element={<><Team /><Footer /></>} /> */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/event-registration" element={<><RegistrationForm /><Footer /></>} />
+        <Route path="/event-registration" element={<><EventRegistration /><Footer /></>} />
       </Routes>
     </Router>
   )
