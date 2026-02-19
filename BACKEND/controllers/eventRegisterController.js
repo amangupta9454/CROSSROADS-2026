@@ -91,7 +91,7 @@ const registerEventTeam = async (req, res) => {
         <div style="font-family:'Segoe UI',sans-serif; max-width:680px; margin:auto; background:#0f172a; color:#e2e8f0; padding:30px; border-radius:16px;">
           
           <div style="background:linear-gradient(135deg,#0ea5e9,#6366f1); padding:40px 30px; text-align:center; border-radius:16px 16px 0 0; color:white;">
-            <h1 style="margin:0; font-size:36px;">CODE-A-NOVA</h1>
+            <h1 style="margin:0; font-size:36px;">CROSSROADS 2026</h1>
             <p style="margin:8px 0 0; font-size:18px; opacity:0.9;">Event Registration Confirmed!</p>
             <div style="margin-top:20px; background:rgba(255,255,255,0.2); display:inline-block; padding:10px 24px; border-radius:999px; font-weight:600;">
               Team ID: <strong>${teamId}</strong>
