@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const eventRoutes = require('./routes/event');  // ← your only route right now
+const adminRoutes = require('./routes/adminRoutes');
 
 // Cached DB connection (important for Vercel/serverless — avoids reconnecting every request)
 let cachedDb = null;
@@ -53,6 +54,7 @@ app.use(async (req, res, next) => {
 
 // ── Only event routes right now ──
 app.use('/api', eventRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Simple root / health check
 app.get('/', (req, res) => {
