@@ -716,11 +716,7 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 import {
   Loader2,
-  User,
-  Mail,
-  Phone,
   Users,
-  BookOpen,
   GraduationCap,
   FileUp,
   CheckCircle2,
@@ -802,10 +798,7 @@ const years = [1, 2, 3, 4].map(y => {
   const suffix = y === 1 ? "st" :
                  y === 2 ? "nd" :
                  y === 3 ? "rd" : "th";
-  return {
-    value: y,
-    label: `${y}${suffix} Year`
-  };
+  return { value: y, label: `${y}${suffix} Year` };
 });
 
 const classes = [9, 10, 11, 12].map(c => ({ value: c, label: `Class ${c}` }));
@@ -846,7 +839,7 @@ const customSelectStyles = {
 };
 
 const RegistrationForm = () => {
-  const [step, setStep] = useState('form'); // 'form' | 'review' | 'thankyou'
+  const [step, setStep] = useState('form');
   const [formData, setFormData] = useState({
     teamName: '',
     leaderName: '',
@@ -871,20 +864,19 @@ const RegistrationForm = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // ──────────────────────────────────────────────
+  //  Team size rules – ONLY Code Puzzle is fixed to 1
+  //  All other events including Treasure Hunt → 1 to 4
+  // ──────────────────────────────────────────────
   const getAllowedTeamSizes = (eventValue) => {
-    if (!eventValue) return baseTeamSizes.slice(0, 4); // show 1–4 initially
+    if (!eventValue) return baseTeamSizes.slice(0, 4); // 1–4 before event selected
 
-    switch (eventValue) {
-      case 'code-puzzle':
-        return [{ value: 1, label: '1 (Solo – Leader only)' }];
-
-      case 'project-exhibition':
-      case 'treasure-hunt':
-        return [{ value: 4, label: '4 members (including leader)' }];
-
-      default:
-        return baseTeamSizes.slice(0, 4); // 1–4 for others
+    if (eventValue === 'code-puzzle') {
+      return [{ value: 1, label: '1 (Solo – Leader only)' }];
     }
+
+    // Every other event (including treasure-hunt) → 1 to 4
+    return baseTeamSizes.slice(0, 4);
   };
 
   const validateField = (name, value) => {
@@ -910,12 +902,12 @@ const RegistrationForm = () => {
 
       if (name === 'event' && selected) {
         const allowed = getAllowedTeamSizes(selected.value);
-        const newSize = allowed[0]?.value || 1;
-        const newMembers = Array.from({ length: newSize - 1 }, () => ({ name: '', email: '' }));
+        const defaultSize = allowed[0]?.value || 1;
+        const newMembers = Array.from({ length: defaultSize - 1 }, () => ({ name: '', email: '' }));
 
         updated = {
           ...updated,
-          teamSize: newSize,
+          teamSize: defaultSize,
           teamMembers: newMembers,
         };
       }
@@ -975,18 +967,17 @@ const RegistrationForm = () => {
     if (!formData.institution) newErrors.institution = 'Please select institution';
     if (!formData.idProof) newErrors.idProof = 'Please upload ID proof';
 
-    // Team size validation according to event rules
+    // Team size validation
     if (formData.event) {
       const allowed = getAllowedTeamSizes(formData.event.value).map(opt => opt.value);
       if (!allowed.includes(formData.teamSize)) {
-        newErrors.teamSize = `Team size must be ${allowed.length === 1 ? allowed[0] : allowed.join(' or ')} for ${formData.event.label}`;
+        newErrors.teamSize = `Team size must be ${allowed.length === 1 ? allowed[0] : allowed.join(' or ')} for this event`;
       }
     }
 
-    // Validate team member fields
-    formData.teamMembers.forEach((member, index) => {
-      if (member.name.trim().length < 3) newErrors[`memberName${index}`] = 'Name must be at least 3 characters';
-      if (!/\S+@\S+\.\S+/.test(member.email)) newErrors[`memberEmail${index}`] = 'Invalid email';
+    formData.teamMembers.forEach((m, i) => {
+      if (m.name.trim().length < 3) newErrors[`memberName${i}`] = 'Name must be at least 3 characters';
+      if (!/\S+@\S+\.\S+/.test(m.email)) newErrors[`memberEmail${i}`] = 'Invalid email';
     });
 
     setErrors(newErrors);
@@ -1126,7 +1117,7 @@ const RegistrationForm = () => {
 
             <div className="space-y-2">
               <label className="block text-sm font-semibold text-gray-300">
-                Team Size {formData.event ? '(determined by event)' : ''}
+                Team Size {formData.event ? '(rules apply)' : ''}
               </label>
               <Select
                 options={getAllowedTeamSizes(formData.event?.value)}
@@ -1139,9 +1130,9 @@ const RegistrationForm = () => {
               />
               {formData.event && (
                 <p className="text-xs text-gray-400 mt-1">
-                  {getAllowedTeamSizes(formData.event.value).length === 1
-                    ? 'Team size is fixed for this event'
-                    : 'Maximum 4 members allowed (including leader)'}
+                  {formData.event.value === 'code-puzzle'
+                    ? 'Solo event – only leader'
+                    : 'You can choose 1 to 4 members (including leader)'}
                 </p>
               )}
               {errors.teamSize && <p className="text-red-400 text-xs mt-1">{errors.teamSize}</p>}
