@@ -8,6 +8,7 @@ import sunstone from '/sunstone.jpg';
 const navItems = [
   { name: "Home", path: "/" },
   { name: "About", path: "/about" },
+  { name: "Team", path: "/team" },
   { name: "Events", path: "/events" },
   { name: "Schedule", path: "/schedule" },
   { name: "Contact", path: "/contact" },
