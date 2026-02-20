@@ -26,7 +26,11 @@ const eventTeamSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true }
   }],
-  appliedAt: { type: Date, default: Date.now }
+  appliedAt: { type: Date, default: Date.now },
+  exported: {
+    type: Boolean,
+    default: false
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('EventTeam', eventTeamSchema);
