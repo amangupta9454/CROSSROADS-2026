@@ -16,7 +16,7 @@ const schedule = {
     },
     { 
       time: "10:00 AM", 
-      title: "Code Puzzle Challenge", 
+      title: "Code Puzzle", 
       description: "Test your algorithmic skills and problem-solving abilities in this brain-teasing coding competition.",
       category: "technical",
       icon: Code,
@@ -70,7 +70,7 @@ const schedule = {
     },
     { 
       time: "5:00 PM", 
-      title: "Rock Band Competition", 
+      title: "Rock Band", 
       description: "Form your band and rock the stage with electrifying performances and original compositions.",
       category: "entertainment",
       icon: Music,
@@ -101,7 +101,7 @@ const schedule = {
     },
     { 
       time: "10:00 AM", 
-      title: "Short Film Maker", 
+      title: "Reel Making", 
       description: "Screen your creative short films and compete for best direction, story, and cinematography awards.",
       category: "cultural",
       icon: Film,

@@ -720,7 +720,7 @@ const events = [
   {
     id: 9,
     imageSrc: event9,
-    name: 'Technical Poster',
+    name: 'Technical Poster Presentation',
     category: 'Technical',
     rulesPdf: posterRules,
     details: {
@@ -760,7 +760,7 @@ const events = [
   {
     id: 12,
     imageSrc: event13,
-    name: 'Short Film Making',
+    name: 'Reel Making',
     category: 'Technical',
     rulesPdf: shortFilmRules,
     details: {
