@@ -1,4 +1,4 @@
-// // EventRegistration.jsx
+
 // import { useState, useEffect } from 'react';
 // import axios from 'axios';
 // import { toast, ToastContainer } from 'react-toastify';
@@ -19,13 +19,12 @@
 //     year: '',
 //     event: '',
 //     teamSize: '1',
-//     members: [{ name: '', email: '' }], // index 0 reserved for leader → we ignore it
+//     members: [], // only additional members (excluding leader)
 //   });
 
 //   const [submitting, setSubmitting] = useState(false);
 //   const [isVisible, setIsVisible] = useState(false);
 
-//   // Colleges list (from your message)
 //   const colleges = [
 //     "ABES Engineering College, Ghaziabad",
 //     "ABESIT Group of Institutions, Ghaziabad",
@@ -100,56 +99,71 @@
 //     setFormData(prev => ({ ...prev, members: newMembers }));
 //   };
 
-//   const updateTeamSize = (size) => {
-//     const num = parseInt(size, 10);
+//   const updateTeamSize = (sizeStr) => {
+//     const size = parseInt(sizeStr, 10);
+//     const requiredAdditional = Math.max(0, size - 1);
+
 //     let newMembers = [...formData.members];
 
-//     // Keep leader slot empty / ignore index 0
-//     if (num > newMembers.length) {
-//       for (let i = newMembers.length; i < num; i++) {
-//         newMembers.push({ name: '', email: '' });
-//       }
-//     } else if (num < newMembers.length) {
-//       newMembers = newMembers.slice(0, num);
+//     // Add empty slots if needed
+//     while (newMembers.length < requiredAdditional) {
+//       newMembers.push({ name: '', email: '' });
 //     }
 
-//     setFormData(prev => ({ ...prev, teamSize: size, members: newMembers }));
+//     // Remove excess slots if decreasing
+//     if (newMembers.length > requiredAdditional) {
+//       newMembers = newMembers.slice(0, requiredAdditional);
+//     }
+
+//     setFormData(prev => ({
+//       ...prev,
+//       teamSize: sizeStr,
+//       members: newMembers,
+//     }));
 //   };
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 
-//     // Basic validation
 //     if (!formData.teamName.trim()) return toast.error("Team name is required");
 //     if (!formData.leaderName.trim()) return toast.error("Leader name is required");
 //     if (!formData.leaderEmail.includes('@')) return toast.error("Valid leader email required");
 //     if (!/^\d{10}$/.test(formData.leaderMobile)) return toast.error("Leader mobile must be 10 digits");
-//     if (formData.teamSize === '1' && formData.members.some(m => m.name || m.email)) {
-//       return toast.error("Solo team → no member details needed");
-//     }
 
-//     const payload = {
-//       ...formData,
-//       members: formData.members.filter(m => m.name.trim() && m.email.trim()), // clean empty
-//     };
+//     const teamSizeNum = parseInt(formData.teamSize, 10);
+//     if (teamSizeNum > 1 && formData.members.length !== teamSizeNum - 1) {
+//       return toast.error(`Please fill details for all ${teamSizeNum - 1} team member(s)`);
+//     }
 
 //     setSubmitting(true);
 
 //     try {
+//       const payload = {
+//         ...formData,
+//         // members already contains only additional members
+//       };
+
 //       const res = await axios.post(
 //         `${import.meta.env.VITE_BACKEND_URL}/api/event-register`,
 //         payload
 //       );
 
 //       toast.success(`Registered! 🎉 Team ID: ${res.data.teamId}`);
-      
+
 //       // Reset form
 //       setFormData({
-//         teamName: '', leaderName: '', leaderEmail: '', leaderMobile: '', leaderWhatsapp: '',
-//         college: '', branch: '', year: '', event: '', teamSize: '1',
-//         members: [{ name: '', email: '' }],
+//         teamName: '',
+//         leaderName: '',
+//         leaderEmail: '',
+//         leaderMobile: '',
+//         leaderWhatsapp: '',
+//         college: '',
+//         branch: '',
+//         year: '',
+//         event: '',
+//         teamSize: '1',
+//         members: [],
 //       });
-
 //     } catch (err) {
 //       toast.error(err.response?.data?.message || 'Registration failed. Try again.');
 //     } finally {
@@ -158,12 +172,13 @@
 //   };
 
 //   const teamSizeNum = parseInt(formData.teamSize, 10);
+//   const showMembersSection = teamSizeNum > 1;
 
 //   return (
 //     <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden pt-28">
 //       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-teal-950/20 opacity-60"></div>
 
-//       <div className={`max-w-5xl mx-auto relative z-10 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12 '}`}>
+//       <div className={`max-w-5xl mx-auto relative z-10 transition-all duration-1000 transform ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
 //         <div className="text-center mb-12">
 //           <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4 tracking-tight">
 //             <span className="text-teal-400">Team</span> Event Registration
@@ -176,7 +191,7 @@
 //         <div className="bg-slate-950/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8 lg:p-12 border border-teal-900/50 hover:border-teal-800/70 transition-all">
 //           <form onSubmit={handleSubmit} className="space-y-10">
 
-//             {/* Team Basics */}
+//             {/* ── Team Information ── */}
 //             <div className="space-y-6">
 //               <div className="flex items-center gap-4 mb-6">
 //                 <div className="p-3 bg-teal-900/40 rounded-xl border border-teal-800/60">
@@ -199,23 +214,24 @@
 //                 </div>
 
 //                 <div>
-//                   <label className="block text-teal-300 mb-2 font-medium">Team Size (1–4) *</label>
+//                   <label className="block text-teal-300 mb-2 font-medium">Team Size (including leader) *</label>
 //                   <select
-//                     name="teamSize"
 //                     value={formData.teamSize}
 //                     onChange={(e) => updateTeamSize(e.target.value)}
 //                     required
 //                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 transition appearance-none cursor-pointer"
 //                   >
-//                     {[1,2,3,4].map(n => (
-//                       <option key={n} value={n}>{n} Member{n > 1 ? 's' : ''}</option>
-//                     ))}
+//                     <option value="1">1 member (Solo)</option>
+//                     <option value="2">2 members</option>
+//                     <option value="3">3 members</option>
+//                     <option value="4">4 members</option>
+                    
 //                   </select>
 //                 </div>
 //               </div>
 //             </div>
 
-//             {/* Leader Details */}
+//             {/* ── Leader Details ── */}
 //             <div className="space-y-6 pt-8 border-t border-teal-900/40">
 //               <div className="flex items-center gap-4 mb-6">
 //                 <div className="p-3 bg-orange-900/30 rounded-xl border border-orange-800/50">
@@ -227,24 +243,57 @@
 //               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 //                 <div>
 //                   <label className="block text-orange-300 mb-2 font-medium">Full Name *</label>
-//                   <input name="leaderName" value={formData.leaderName} onChange={handleChange} required className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30" placeholder="Leader Name" />
+//                   <input
+//                     name="leaderName"
+//                     value={formData.leaderName}
+//                     onChange={handleChange}
+//                     required
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30"
+//                     placeholder="Leader Name"
+//                   />
 //                 </div>
 //                 <div>
 //                   <label className="block text-orange-300 mb-2 font-medium">Email *</label>
-//                   <input name="leaderEmail" type="email" value={formData.leaderEmail} onChange={handleChange} required className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30" placeholder="leader@example.com" />
+//                   <input
+//                     name="leaderEmail"
+//                     type="email"
+//                     value={formData.leaderEmail}
+//                     onChange={handleChange}
+//                     required
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30"
+//                     placeholder="leader@example.com"
+//                   />
 //                 </div>
 //                 <div>
 //                   <label className="block text-orange-300 mb-2 font-medium">Mobile *</label>
-//                   <input name="leaderMobile" value={formData.leaderMobile} onChange={handleChange} required pattern="\d{10}" maxLength={10} className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30" placeholder="10-digit number" />
+//                   <input
+//                     name="leaderMobile"
+//                     value={formData.leaderMobile}
+//                     onChange={handleChange}
+//                     required
+//                     pattern="\d{10}"
+//                     maxLength={10}
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30"
+//                     placeholder="10-digit number"
+//                   />
 //                 </div>
 //                 <div>
 //                   <label className="block text-orange-300 mb-2 font-medium">WhatsApp *</label>
-//                   <input name="leaderWhatsapp" value={formData.leaderWhatsapp} onChange={handleChange} required pattern="\d{10}" maxLength={10} className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30" placeholder="10-digit WhatsApp" />
+//                   <input
+//                     name="leaderWhatsapp"
+//                     value={formData.leaderWhatsapp}
+//                     onChange={handleChange}
+//                     required
+//                     pattern="\d{10}"
+//                     maxLength={10}
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white placeholder-gray-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30"
+//                     placeholder="10-digit WhatsApp"
+//                   />
 //                 </div>
 //               </div>
 //             </div>
 
-//             {/* College & Academic */}
+//             {/* ── Academic Details ── */}
 //             <div className="space-y-6 pt-8 border-t border-teal-900/40">
 //               <div className="flex items-center gap-4 mb-6">
 //                 <div className="p-3 bg-teal-900/40 rounded-xl border border-teal-800/60">
@@ -256,31 +305,55 @@
 //               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 //                 <div className="md:col-span-2">
 //                   <label className="block text-teal-300 mb-2 font-medium">College *</label>
-//                   <select name="college" value={formData.college} onChange={handleChange} required className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer">
+//                   <select
+//                     name="college"
+//                     value={formData.college}
+//                     onChange={handleChange}
+//                     required
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
+//                   >
 //                     <option value="">Select your college</option>
-//                     {colleges.map(c => <option key={c} value={c}>{c}</option>)}
+//                     {colleges.map(c => (
+//                       <option key={c} value={c}>{c}</option>
+//                     ))}
 //                   </select>
 //                 </div>
 
 //                 <div>
 //                   <label className="block text-teal-300 mb-2 font-medium">Branch *</label>
-//                   <select name="branch" value={formData.branch} onChange={handleChange} required className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer">
+//                   <select
+//                     name="branch"
+//                     value={formData.branch}
+//                     onChange={handleChange}
+//                     required
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
+//                   >
 //                     <option value="">Select branch</option>
-//                     {branches.map(b => <option key={b} value={b}>{b}</option>)}
+//                     {branches.map(b => (
+//                       <option key={b} value={b}>{b}</option>
+//                     ))}
 //                   </select>
 //                 </div>
 
 //                 <div>
 //                   <label className="block text-teal-300 mb-2 font-medium">Year *</label>
-//                   <select name="year" value={formData.year} onChange={handleChange} required className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer">
+//                   <select
+//                     name="year"
+//                     value={formData.year}
+//                     onChange={handleChange}
+//                     required
+//                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
+//                   >
 //                     <option value="">Select year</option>
-//                     {years.map(y => <option key={y} value={y}>{y}</option>)}
+//                     {years.map(y => (
+//                       <option key={y} value={y}>{y}</option>
+//                     ))}
 //                   </select>
 //                 </div>
 //               </div>
 //             </div>
 
-//             {/* Event */}
+//             {/* ── Event Selection ── */}
 //             <div className="space-y-6 pt-8 border-t border-teal-900/40">
 //               <div className="flex items-center gap-4 mb-6">
 //                 <div className="p-3 bg-orange-900/30 rounded-xl border border-orange-800/50">
@@ -289,7 +362,13 @@
 //                 <h2 className="text-3xl font-semibold text-white">Choose Event *</h2>
 //               </div>
 
-//               <select name="event" value={formData.event} onChange={handleChange} required className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30 appearance-none cursor-pointer">
+//               <select
+//                 name="event"
+//                 value={formData.event}
+//                 onChange={handleChange}
+//                 required
+//                 className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30 appearance-none cursor-pointer"
+//               >
 //                 <option value="">Select event</option>
 //                 {events.map(ev => (
 //                   <option key={ev.value} value={ev.value}>
@@ -299,20 +378,27 @@
 //               </select>
 //             </div>
 
-//             {/* Team Members (if >1) */}
-//             {teamSizeNum > 1 && (
+//             {/* ── Additional Team Members ── */}
+//             {showMembersSection && (
 //               <div className="space-y-6 pt-8 border-t border-teal-900/40">
 //                 <div className="flex items-center gap-4 mb-6">
 //                   <div className="p-3 bg-teal-900/40 rounded-xl border border-teal-800/60">
 //                     <Users className="text-teal-400" size={28} />
 //                   </div>
-//                   <h2 className="text-3xl font-semibold text-white">Team Members ({teamSizeNum - 1})</h2>
+//                   <h2 className="text-3xl font-semibold text-white">
+//                     Additional Team Members ({teamSizeNum - 1})
+//                   </h2>
 //                 </div>
 
 //                 {formData.members.map((member, idx) => (
-//                   <div key={idx} className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-900/50 p-6 rounded-2xl border border-teal-900/30">
+//                   <div
+//                     key={idx}
+//                     className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-900/50 p-6 rounded-2xl border border-teal-900/30"
+//                   >
 //                     <div>
-//                       <label className="block text-teal-300 mb-2 font-medium">Member {idx + 1} Name *</label>
+//                       <label className="block text-teal-300 mb-2 font-medium">
+//                         Member {idx + 1} Name *
+//                       </label>
 //                       <input
 //                         value={member.name}
 //                         onChange={(e) => handleMemberChange(idx, 'name', e.target.value)}
@@ -322,7 +408,9 @@
 //                       />
 //                     </div>
 //                     <div>
-//                       <label className="block text-teal-300 mb-2 font-medium">Member {idx + 1} Email *</label>
+//                       <label className="block text-teal-300 mb-2 font-medium">
+//                         Member {idx + 1} Email *
+//                       </label>
 //                       <input
 //                         type="email"
 //                         value={member.email}
@@ -337,7 +425,7 @@
 //               </div>
 //             )}
 
-//             {/* Submit */}
+//             {/* Submit Button */}
 //             <button
 //               type="submit"
 //               disabled={submitting}
@@ -374,7 +462,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-  Users, User, Mail, Phone, GraduationCap, Calendar, Trophy, Send, Loader2
+  Users, User, Mail, Phone, GraduationCap, Trophy, Send, Loader2
 } from 'lucide-react';
 
 const EventRegistration = () => {
@@ -389,7 +477,7 @@ const EventRegistration = () => {
     year: '',
     event: '',
     teamSize: '1',
-    members: [], // only additional members (excluding leader)
+    members: [],
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -458,6 +546,21 @@ const EventRegistration = () => {
     setTimeout(() => setIsVisible(true), 150);
   }, []);
 
+  // Reset team size when event changes if current size is invalid
+  useEffect(() => {
+    if (!formData.event) return;
+
+    let validSizes = [1, 2, 3, 4];
+    if (formData.event === 'code-puzzle') validSizes = [1];
+    if (formData.event === 'treasure-hunt') validSizes = [5, 6, 7, 8];
+
+    if (!validSizes.includes(parseInt(formData.teamSize, 10))) {
+      const newSize = validSizes[0].toString();
+      setFormData(prev => ({ ...prev, teamSize: newSize }));
+      updateTeamSize(newSize);
+    }
+  }, [formData.event]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -475,12 +578,10 @@ const EventRegistration = () => {
 
     let newMembers = [...formData.members];
 
-    // Add empty slots if needed
     while (newMembers.length < requiredAdditional) {
       newMembers.push({ name: '', email: '' });
     }
 
-    // Remove excess slots if decreasing
     if (newMembers.length > requiredAdditional) {
       newMembers = newMembers.slice(0, requiredAdditional);
     }
@@ -501,6 +602,14 @@ const EventRegistration = () => {
     if (!/^\d{10}$/.test(formData.leaderMobile)) return toast.error("Leader mobile must be 10 digits");
 
     const teamSizeNum = parseInt(formData.teamSize, 10);
+
+    if (formData.event === 'code-puzzle' && teamSizeNum !== 1) {
+      return toast.error("Code Puzzle is solo only (1 member)");
+    }
+    if (formData.event === 'treasure-hunt' && (teamSizeNum < 5 || teamSizeNum > 8)) {
+      return toast.error("Treasure Hunt requires 5 to 8 members (including leader)");
+    }
+
     if (teamSizeNum > 1 && formData.members.length !== teamSizeNum - 1) {
       return toast.error(`Please fill details for all ${teamSizeNum - 1} team member(s)`);
     }
@@ -508,11 +617,7 @@ const EventRegistration = () => {
     setSubmitting(true);
 
     try {
-      const payload = {
-        ...formData,
-        // members already contains only additional members
-      };
-
+      const payload = { ...formData };
       const res = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/event-register`,
         payload
@@ -520,7 +625,6 @@ const EventRegistration = () => {
 
       toast.success(`Registered! 🎉 Team ID: ${res.data.teamId}`);
 
-      // Reset form
       setFormData({
         teamName: '',
         leaderName: '',
@@ -544,6 +648,10 @@ const EventRegistration = () => {
   const teamSizeNum = parseInt(formData.teamSize, 10);
   const showMembersSection = teamSizeNum > 1;
 
+  let availableTeamSizes = [1, 2, 3, 4];
+  if (formData.event === 'code-puzzle') availableTeamSizes = [1];
+  if (formData.event === 'treasure-hunt') availableTeamSizes = [5, 6, 7, 8];
+
   return (
     <div className="min-h-screen bg-black py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden pt-28">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-teal-950/20 opacity-60"></div>
@@ -561,17 +669,18 @@ const EventRegistration = () => {
         <div className="bg-slate-950/80 backdrop-blur-xl rounded-3xl shadow-2xl p-8 lg:p-12 border border-teal-900/50 hover:border-teal-800/70 transition-all">
           <form onSubmit={handleSubmit} className="space-y-10">
 
-            {/* ── Team Information ── */}
+            {/* ── Combined Team Name + Event + Team Size (2-column grid) ── */}
             <div className="space-y-6">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 bg-teal-900/40 rounded-xl border border-teal-800/60">
                   <Users className="text-teal-400" size={28} />
                 </div>
-                <h2 className="text-3xl font-semibold text-white">Team Information</h2>
+                <h2 className="text-3xl font-semibold text-white">Team & Event Details</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+                {/* Team Name - full width on mobile, first column on desktop */}
+                <div className="md:col-span-2">
                   <label className="block text-teal-300 mb-2 font-medium">Team Name *</label>
                   <input
                     name="teamName"
@@ -583,6 +692,26 @@ const EventRegistration = () => {
                   />
                 </div>
 
+                {/* Event Selection */}
+                <div>
+                  <label className="block text-teal-300 mb-2 font-medium">Select Event *</label>
+                  <select
+                    name="event"
+                    value={formData.event}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
+                  >
+                    <option value="">Select event</option>
+                    {events.map(ev => (
+                      <option key={ev.value} value={ev.value}>
+                        {ev.icon} {ev.label} ({ev.category})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Team Size */}
                 <div>
                   <label className="block text-teal-300 mb-2 font-medium">Team Size (including leader) *</label>
                   <select
@@ -591,10 +720,11 @@ const EventRegistration = () => {
                     required
                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 transition appearance-none cursor-pointer"
                   >
-                    <option value="1">1 member (Solo)</option>
-                    <option value="2">2 members</option>
-                    <option value="3">3 members</option>
-                    <option value="4">4 members</option>
+                    {availableTeamSizes.map(size => (
+                      <option key={size} value={size}>
+                        {size} member{size > 1 ? 's' : ''} {size === 1 ? '(Solo)' : ''}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -682,9 +812,7 @@ const EventRegistration = () => {
                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
                   >
                     <option value="">Select your college</option>
-                    {colleges.map(c => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
+                    {colleges.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
 
@@ -698,9 +826,7 @@ const EventRegistration = () => {
                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
                   >
                     <option value="">Select branch</option>
-                    {branches.map(b => (
-                      <option key={b} value={b}>{b}</option>
-                    ))}
+                    {branches.map(b => <option key={b} value={b}>{b}</option>)}
                   </select>
                 </div>
 
@@ -714,37 +840,10 @@ const EventRegistration = () => {
                     className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-teal-700 rounded-xl text-white focus:border-teal-500 focus:ring-2 focus:ring-teal-600/30 appearance-none cursor-pointer"
                   >
                     <option value="">Select year</option>
-                    {years.map(y => (
-                      <option key={y} value={y}>{y}</option>
-                    ))}
+                    {years.map(y => <option key={y} value={y}>{y}</option>)}
                   </select>
                 </div>
               </div>
-            </div>
-
-            {/* ── Event Selection ── */}
-            <div className="space-y-6 pt-8 border-t border-teal-900/40">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-orange-900/30 rounded-xl border border-orange-800/50">
-                  <Trophy className="text-orange-400" size={28} />
-                </div>
-                <h2 className="text-3xl font-semibold text-white">Choose Event *</h2>
-              </div>
-
-              <select
-                name="event"
-                value={formData.event}
-                onChange={handleChange}
-                required
-                className="w-full px-5 py-4 bg-slate-900 border border-slate-700 hover:border-orange-700 rounded-xl text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-600/30 appearance-none cursor-pointer"
-              >
-                <option value="">Select event</option>
-                {events.map(ev => (
-                  <option key={ev.value} value={ev.value}>
-                    {ev.icon} {ev.label} ({ev.category})
-                  </option>
-                ))}
-              </select>
             </div>
 
             {/* ── Additional Team Members ── */}
