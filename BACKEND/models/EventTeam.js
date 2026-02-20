@@ -21,7 +21,7 @@ const eventTeamSchema = new mongoose.Schema({
   branch: { type: String, required: true },
   year: { type: String, required: true },
   event: { type: String, required: true },
-  teamSize: { type: Number, required: true, min: 1, max: 4 },
+  teamSize: { type: Number, required: true, min: 1, max: 8 },
   members: [{
     name: { type: String, required: true },
     email: { type: String, required: true }
