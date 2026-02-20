@@ -519,7 +519,7 @@ const Contact = () => {
     const formData = new FormData(e.target);
     
     try {
-      const response = await fetch('https://getform.io/f/bgdllgva', {
+      const response = await fetch('https://forminit.com/f/azygdkgb', {
         method: 'POST',
         body: formData,
       });
