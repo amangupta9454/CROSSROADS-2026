@@ -9,7 +9,7 @@ import sunstone from "../Teams/sunstone.png";
 import hodmca from "../Teams/hodmca.png";
 import hodee from "../Teams/hodee.png";
 import sac from '../Teams/sac.jpg';
-
+import aman from '../Teams/aman.jpg';
 const teamMembers = [
   {
     name: "Mr. Anand Prakash",
@@ -59,6 +59,12 @@ const teamMembers = [
     image: hodee,
   },
   {
+    name: "Aman Gupta",
+    role: "Website LeadDeveloper",
+    dept: "CSE",
+    image: aman,
+  },
+   {
     name: "Sachchidanand Yadav",
     role: "Website Developer",
     dept: "CSE",
