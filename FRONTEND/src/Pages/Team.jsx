@@ -10,6 +10,7 @@ import hodmca from "../Teams/hodmca.png";
 import hodee from "../Teams/hodee.png";
 import sac from '../Teams/sac.jpg';
 import aman from '../Teams/aman.jpg';
+import mam from '../Teams/mam.jpeg';
 const teamMembers = [
   {
     name: "Mr. Anand Prakash",
@@ -59,6 +60,12 @@ const teamMembers = [
     image: hodee,
   },
   {
+    name: "Mr. Manjula Shukla",
+    role: "Invitation Committee",
+    dept: "CSE",
+    image: mam,
+  },
+  {
     name: "Aman Gupta",
     role: "Website Lead Developer",
     dept: "CSE",
@@ -66,7 +73,7 @@ const teamMembers = [
   },
    {
     name: "Sachchidanand Yadav",
-    role: "Website Developer",
+    role: "Helpdesk Lead",
     dept: "CSE",
     image: sac,
   },
