@@ -13,17 +13,17 @@ const login = (req, res) => {
   res.status(401).json({ msg: 'Invalid credentials' });
 };
 
-const getAnalytics = async (req, res) => {
-  try {
-    const total = await EventTeam.countDocuments();
-    const eventWise = await EventTeam.aggregate([
-      { $group: { _id: '$event', count: { $sum: 1 }, details: { $push: '$$ROOT' } } }
-    ]);
-    res.json({ total, eventWise });
-  } catch (err) {
-    res.status(500).json({ msg: err.message });
-  }
-};
+// const getAnalytics = async (req, res) => {
+//   try {
+//     const total = await EventTeam.countDocuments();
+//     const eventWise = await EventTeam.aggregate([
+//       { $group: { _id: '$event', count: { $sum: 1 }, details: { $push: '$$ROOT' } } }
+//     ]);
+//     res.json({ total, eventWise });
+//   } catch (err) {
+//     res.status(500).json({ msg: err.message });
+//   }
+// };
 
 const exportExcel = async (req, res) => {
   try {
@@ -146,6 +146,38 @@ const exportExcel = async (req, res) => {
   } catch (err) {
     console.error('Excel export error:', err);
     res.status(500).json({ msg: 'Failed to generate Excel file', error: err.message });
+  }
+};
+// controllers/adminController.js
+
+const getAnalytics = async (req, res) => {
+  try {
+    const total = await EventTeam.countDocuments();
+
+    // Today's registrations (midnight to midnight in UTC — adjust if you want IST exactly)
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0); // midnight today UTC
+
+    const todayEnd = new Date(todayStart);
+    todayEnd.setDate(todayEnd.getDate() + 1); // midnight tomorrow
+
+    const todayCount = await EventTeam.countDocuments({
+      appliedAt: { $gte: todayStart, $lt: todayEnd }
+    });
+
+    const eventWise = await EventTeam.aggregate([
+      { $group: { _id: '$event', count: { $sum: 1 }, details: { $push: '$$ROOT' } } }
+    ]);
+
+    res.json({
+      total,
+      today: todayCount,
+      eventWise
+    });
+
+  } catch (err) {
+    console.error('Analytics error:', err);
+    res.status(500).json({ msg: 'Server error fetching analytics' });
   }
 };
 
