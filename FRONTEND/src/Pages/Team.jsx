@@ -60,7 +60,7 @@ const teamMembers = [
   },
   {
     name: "Aman Gupta",
-    role: "Website LeadDeveloper",
+    role: "Website Lead Developer",
     dept: "CSE",
     image: aman,
   },
