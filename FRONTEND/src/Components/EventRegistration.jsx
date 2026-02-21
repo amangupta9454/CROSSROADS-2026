@@ -533,7 +533,7 @@ const EventRegistration = () => {
     { value: 'project-exhibition', label: 'Project Exhibition', icon: '🔬', category: 'technical' },
     { value: 'robo-race', label: 'Robo Race', icon: '🤖', category: 'technical' },
     { value: 'technical-poster', label: 'Technical Poster Presentation', icon: '📊', category: 'technical' },
-    { value: 'cultural-events', label: 'Cultural Events', icon: '🎭', category: 'cultural' },
+   
     { value: 'rangoli-competition', label: 'Rangoli Competition', icon: '🎨', category: 'cultural' },
     { value: 'food-without-fire', label: 'Food Without Fire', icon: '🍳', category: 'cultural' },
     { value: 'dance-competition', label: 'Dance Competition', icon: '💃', category: 'cultural' },
