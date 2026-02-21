@@ -79,8 +79,8 @@ const App = () => {
         <Route path="/event-registration" element={<MainLayout><EventRegistration /></MainLayout>} />
 
         {/* Full-screen / special pages — NO navbar, NO footer */}
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/login" element={<MainLayout><AdminLogin /></MainLayout>} />
+        <Route path="/admin/dashboard" element={<MainLayout><AdminDashboard /></MainLayout>} />
         <Route path="/attendence" element={<Attendance />} /> {/* or rename to /scanner, /attendance-scan etc. */}
       </Routes>
     </Router>
