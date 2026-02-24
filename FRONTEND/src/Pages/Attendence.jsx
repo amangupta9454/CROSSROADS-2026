@@ -15,7 +15,7 @@ const Attendance = () => {
       }}
     >
       <iframe
-        src="https://crossroads-attendence.netlify.app/scan"
+        src="https://attendence-crossroads.lovable.app"
         title="Attendance Scanner"
         style={{
           width: '100%',
