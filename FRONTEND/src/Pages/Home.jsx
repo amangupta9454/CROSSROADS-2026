@@ -100,54 +100,7 @@ const Home = () => {
     }
   ];
 
-  const prizes = [
-    {
-      place: '1st Place',
-      title: 'Grand Sorcerer',
-      amount: '₹7,000',
-      color: 'blue',
-      gradient: 'from-blue-600 to-blue-500',
-      bgGradient: 'rgba(59, 130, 246, 0.05)',
-      borderColor: 'rgba(59, 130, 246, 0.4)',
-      isWinner: true,
-      rewards: [
-        'Cash prize',
-        'Certificates and Trophy',
-        'Exclusive Mentorship Sessions',
-        'Goodies'
-      ]
-    },
-    {
-      place: '2nd Place',
-      title: 'Silver Spell',
-      amount: '₹5,000',
-      color: 'sky',
-      gradient: 'from-sky-600 to-cyan-500',
-      bgGradient: 'rgba(14, 165, 233, 0.05)',
-      borderColor: 'rgba(14, 165, 233, 0.3)',
-      rewards: [
-        'Cash prize',
-        'Certificates and Trophy',
-        'Exclusive Mentorship Sessions',
-        'Goodies'
-      ]
-    },
-    {
-      place: '3rd Place',
-      title: 'Bronze Witch',
-      amount: '₹3,000',
-      color: 'sky',
-      gradient: 'from-sky-600 to-cyan-500',
-      bgGradient: 'rgba(14, 165, 233, 0.05)',
-      borderColor: 'rgba(14, 165, 233, 0.3)',
-      rewards: [
-        'Cash prize',
-        'Certificates and Trophy',
-        'Exclusive Mentorship Sessions',
-        'Goodies'
-      ]
-    }
-  ];
+  
 
   const faqs = [
     {
@@ -306,7 +259,7 @@ const Home = () => {
             }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 text-center mb-6 md:mb-8">
-              Registration Open
+              Registration Extended - Hurry Up!
             </h2>
 
             <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-6 md:mb-8">
