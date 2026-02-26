@@ -47,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const eventDate = new Date('2026-02-26T11:59:59').getTime();
+      const eventDate = new Date('2026-02-26T08:00:00').getTime();
       const now = new Date().getTime();
       const difference = eventDate - now;
 
@@ -259,10 +259,10 @@ const Home = () => {
             }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-400 text-center mb-6 md:mb-8">
-              Registration Extended - Hurry Up!
+             Wow! All seats are taken and registration is now closed. Get ready for something amazing!
             </h2>
 
-            <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-6 md:mb-8">
+            {/* <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-6 md:mb-8">
               {[
                 { value: timeLeft.days, label: 'Days' },
                 { value: timeLeft.hours, label: 'Hours' },
@@ -302,7 +302,7 @@ const Home = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </div> */}
           </div>
         </motion.div>
 
