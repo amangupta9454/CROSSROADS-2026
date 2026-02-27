@@ -11,7 +11,7 @@ import Contact from './Pages/Contact.jsx';
 import Events from './Pages/Events.jsx';
 import Schedule from './Pages/Schedule.jsx';
 import Team from './Pages/Team.jsx';
-// import EventRegistration from './Components/EventRegistration.jsx';
+import EventRegistration from './Components/EventRegistration.jsx';
 
 // Special pages without navbar/footer
 import AdminLogin from './Components/AdminLogin.jsx';
