@@ -40,7 +40,7 @@ const App = () => {
         <Route path="/events" element={<MainLayout><Events /></MainLayout>} />
         <Route path="/schedule" element={<MainLayout><Schedule /></MainLayout>} />
         <Route path="/team" element={<MainLayout><Team /></MainLayout>} />
-        {/* <Route path="/event-registration" element={<MainLayout><EventRegistration /></MainLayout>} /> */}
+        <Route path="/event-registration" element={<MainLayout><EventRegistration /></MainLayout>} />
 
         {/* Full-screen / special pages — NO navbar, NO footer */}
         <Route path="/admin/login" element={<MainLayout><AdminLogin /></MainLayout>} />
