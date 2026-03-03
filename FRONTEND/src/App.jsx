@@ -11,12 +11,12 @@ import Contact from './Pages/Contact.jsx';
 import Events from './Pages/Events.jsx';
 import Schedule from './Pages/Schedule.jsx';
 import Team from './Pages/Team.jsx';
-import EventRegistration from './Components/EventRegistration.jsx';
+// import EventRegistration from './Components/EventRegistration.jsx';
 
 // Special pages without navbar/footer
 import AdminLogin from './Components/AdminLogin.jsx';
 import AdminDashboard from './Components/AdminDashboard.jsx';
-import Attendance from './Pages/Attendence.jsx'; // ← typo fix: Attendance
+// import Attendance from './Pages/Attendence.jsx'; // ← typo fix: Attendance
 
 // Reusable layout for normal pages
 const MainLayout = ({ children }) => {
@@ -40,12 +40,12 @@ const App = () => {
         <Route path="/events" element={<MainLayout><Events /></MainLayout>} />
         <Route path="/schedule" element={<MainLayout><Schedule /></MainLayout>} />
         <Route path="/team" element={<MainLayout><Team /></MainLayout>} />
-        <Route path="/event-registration" element={<MainLayout><EventRegistration /></MainLayout>} />
+{/*         <Route path="/event-registration" element={<MainLayout><EventRegistration /></MainLayout>} /> */}
 
         {/* Full-screen / special pages — NO navbar, NO footer */}
         <Route path="/admin/login" element={<MainLayout><AdminLogin /></MainLayout>} />
         <Route path="/admin/dashboard" element={<MainLayout><AdminDashboard /></MainLayout>} />
-        <Route path="/attendence" element={<Attendance />} /> {/* or rename to /scanner, /attendance-scan etc. */}
+        {/* <Route path="/attendence" element={<Attendance />} /> or rename to /scanner, /attendance-scan etc. */}
       </Routes>
     </Router>
   );
